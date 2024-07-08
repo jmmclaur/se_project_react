@@ -3,7 +3,7 @@ import "./ItemModal.css";
 function ItemModal({ activeModal, card, closeActiveModal }) {
   console.log(card?.link);
   return (
-    <div className={`modal ${activeModal === "preview" && "modal__opened"}`}>
+    <div className={`modal ${activeModal === "preview" && "modal_opened"}`}>
       <div className="modal__content modal__content_type_image">
         <button onClick={closeActiveModal} className="modal__close"></button>
         <img
@@ -22,3 +22,5 @@ function ItemModal({ activeModal, card, closeActiveModal }) {
 
 export default ItemModal;
 //try onClose instead of onClick, nope onclick actually closes it
+
+//modal__close is still showing gray instead of white, is visibility hidden?

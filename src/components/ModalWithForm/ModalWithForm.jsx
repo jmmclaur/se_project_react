@@ -8,7 +8,7 @@ function ModalWithForm({
   closeActiveModal,
 }) {
   return (
-    <div className={isOpen ? `modal modal__opened` : `modal_closed`}>
+    <div className={isOpen ? `modal modal_opened` : `modal_closed`}>
       <div className="modal__container">
         <h2 className="modal__title">{title}</h2>
         <button onClick={closeActiveModal} className="modal__closer"></button>
@@ -25,3 +25,5 @@ function ModalWithForm({
 
 export default ModalWithForm;
 //try onClose instead of onClick
+
+//close button isn't pulling up

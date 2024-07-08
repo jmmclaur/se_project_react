@@ -19,6 +19,10 @@
   visibility: hidden;
 }
 
+/*.modal__close {
+  visibility: visible;
+} */
+
 .modal__title {
   font-family: "CabinetGrotesk-Bold", sans-serif;
   margin: 0, 0, 24px, 0;
@@ -64,7 +68,7 @@
 }
 
 .modal__closer {
-  background: transparent url(../../assets/close_button_gray.svg) center
+  background: transparent url(../../assets/close_button-gray.svg) center
     no-repeat;
   position: absolute;
   background-color: transparent;

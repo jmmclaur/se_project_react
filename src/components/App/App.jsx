@@ -6,9 +6,13 @@ import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
-import AddItemModal from "../AddItemModal/AddItemModal";
+//import AddItemModal from "../AddItemModal/AddItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, apiKey } from "../../utils/constants";
+/*new below
+import { getItems, addNewItem } from "../../utils/Api";
+import { CurrentTemperatureUnitContext } from "../../utils/contexts/CurrentTemperatureUnitContext";
+*/
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -18,6 +22,15 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState("");
+  /*new below
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState([
+    {
+      _id: 0,
+      name: "Hat",
+    },
+  ]);
+  */
 
   const handleCardClick = (card) => {
     setSelectedCard(card);
@@ -31,6 +44,25 @@ function App() {
   const closeActiveModal = () => {
     setActiveModal("");
   };
+
+  /*new
+  const onAddItem = (values) => {
+    console.log(values);
+    addNewItem(values);
+  };
+
+  const handleToggleSwitchChange = () => {
+    if (currentTemperatureUnit === "C") {
+      setCurrentTemperatureUnit("F");
+      console.log(currentTemperatureUnit);
+    } else if (currentTemperatureUnit === "F") {
+      setCurrentTemperatureUnit("C");
+      console.log(currentTemperatureUnit);
+    }
+  };
+  console.log(currentTemperatureUnit);
+
+  */
 
   useEffect(() => {
     getWeather(coordinates, apiKey)
@@ -73,27 +105,39 @@ function App() {
             placeholder="Image URL"
           />
         </label>
-        <fieldset className="modal__radio-buttons">
+        <fieldset clas sName="modal__radio-buttons">
           <legend className="modal__legend">Select the weather type:</legend>
-          <label
-            htmlFor="name"
-            className="modal__label modal__label_type_radio"
-          >
-            <input id="hot" type="radio" className="modal__radio-input" />
+          <label htmlFor="hot" className="modal__label modal__label_type_radio">
+            <input
+              id="hot"
+              type="radio"
+              className="modal__radio-input"
+              name="weather_item"
+            />
             Hot
           </label>
           <label
-            htmlFor="name"
+            htmlFor="warm"
             className="modal__label modal__label_type_radio"
           >
-            <input id="warm" type="radio" className="modal__radio-input" />
+            <input
+              id="warm"
+              type="radio"
+              className="modal__radio-input"
+              name="weather_item"
+            />
             Warm
           </label>
           <label
-            htmlFor="name"
+            htmlFor="cold"
             className="modal__label modal__label_type_radio"
           >
-            <input id="cold" type="radio" className="modal__radio-input" />
+            <input
+              id="cold"
+              type="radio"
+              className="modal__radio-input"
+              name="weather_item"
+            />
             Cold
           </label>
         </fieldset>

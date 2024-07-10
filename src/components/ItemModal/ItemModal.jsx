@@ -24,3 +24,5 @@ export default ItemModal;
 //try onClose instead of onClick, nope onclick actually closes it
 
 //modal__close is still showing gray instead of white, is visibility hidden?
+
+//change link to imageUrl?

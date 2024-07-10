@@ -46,10 +46,10 @@ export const coordinates = {
 
 export const defaultWeatherOptions = {
   day: {
-    url: new URL("../assets/day/default.png", import.meta.url).href,
+    url: new URL("../assets/day/default_day.png", import.meta.url).href,
   },
   night: {
-    url: new URL("../assets/night/default.png", import.meta.url).href,
+    url: new URL("../assets/night/default_night.png", import.meta.url).href,
   },
 };
 

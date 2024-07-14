@@ -81,31 +81,32 @@ function App() {
         <Main weatherData={weatherData} handleCardClick={handleCardClick} />
         <Footer />
       </div>
+
       <ModalWithForm
         title="New garment"
         buttonText="Add garment"
         isOpen={activeModal === "add-garment"}
         closeActiveModal={closeActiveModal}
       >
-        <label htmlFor="name" className="modal__label">
+        <label htmlFor="name" className="modal__label" label="name">
           Name{" "}
-          <input
-            type="text"
-            className="modal__input"
-            id="name"
-            placeholder="Name"
-          />
         </label>
-        <label htmlFor="ImageUrl" className="modal__label">
+        <input
+          type="text"
+          className="modal__input"
+          id="name"
+          placeholder="Name"
+        />
+        <label htmlFor="ImageUrl" className="modal__label" label="imageURL">
           Image{" "}
-          <input
-            type="text"
-            className="modal__input"
-            id="imageUrl"
-            placeholder="Image URL"
-          />
         </label>
-        <fieldset clas sName="modal__radio-buttons">
+        <input
+          type="text"
+          className="modal__input"
+          id="imageUrl"
+          placeholder="Image URL"
+        />
+        <fieldset className="modal__radio-buttons">
           <legend className="modal__legend">Select the weather type:</legend>
           <label htmlFor="hot" className="modal__label modal__label_type_radio">
             <input

@@ -67,6 +67,10 @@
   width: 100%;
 }
 
+.modal__input:focus {
+  border-width: 0 0 3px;
+}
+
 .modal__closer {
   background: transparent url(../../assets/close_button-gray.svg) center
     no-repeat;

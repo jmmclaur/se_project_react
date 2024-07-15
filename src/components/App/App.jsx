@@ -97,7 +97,7 @@ function App() {
           id="name"
           placeholder="Name"
         />
-        <label htmlFor="ImageUrl" className="modal__label" label="imageURL">
+        <label htmlFor="imageUrl" className="modal__label" label="imageURL">
           Image{" "}
         </label>
         <input

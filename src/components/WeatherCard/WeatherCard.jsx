@@ -1,35 +1,8 @@
-/* import "./WeatherCard.css";
-import clear from "../../assets/day/clear_day.png";
-import { weatherOptions } from "../../utils/constants";
-import { defaultWeatherOptions } from "../../utils/constants";
-
-function WeatherCard({ weatherData }) {
-  const weatherOption = weatherOptions.find((item) => {
-    return (
-      item.day === weatherData.isDay && item.condition === weatherData.condition
-    );
-  });
-
-  console.log(weatherData.isDay);
-  console.log(weatherData.condition);
-
-  return (
-    <section className="weather-card">
-      <p className="weather-card__temp">{weatherData.temp.F}° F</p>
-      <img
-        src={weatherOption?.url}
-        alt={weatherOption?.condition}
-        className="weather-card__image"
-      />
-    </section>
-  );
-}
-
-export default WeatherCard; */
-
 import "./WeatherCard.css";
 import clear from "../../assets/day/clear_day.png";
 import { weatherOptions, defaultWeatherOptions } from "../../utils/constants";
+import { useContext } from "react";
+import { CurrentTemperatureUnitContext } from "../../utils/contexts/CurrentTemperatureUnitContext";
 
 function WeatherCard({ weatherData }) {
   const weatherOption = weatherOptions.find((item) => {
@@ -38,20 +11,25 @@ function WeatherCard({ weatherData }) {
     );
   });
 
-  const imgUrl =
+  const imageUrl =
     weatherOption?.url ||
     (weatherData.isDay
       ? defaultWeatherOptions.day.url
       : defaultWeatherOptions.night.url);
 
-  console.log(weatherData.isDay); // Debugging
-  console.log(weatherData.condition); // Debugging
+  console.log(weatherData.isDay);
+  console.log(weatherData.condition);
+
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  console.log(currentTemperatureUnit);
+  const temp = weatherData?.weather?.temperature[currentTemperatureUnit] || 999;
+  console.log(temp);
 
   return (
     <section className="weather-card">
       <p className="weather-card__temp">{weatherData.temp.F}° F</p>
       <img
-        src={imgUrl}
+        src={imageUrl}
         alt={weatherOption?.condition || "default"}
         className="weather-card__image"
       />

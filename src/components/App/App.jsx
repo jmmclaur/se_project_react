@@ -13,7 +13,7 @@ import Profile from "../Profile/Profile";
 import { Routes, Route } from "react-router-dom";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, apiKey } from "../../utils/constants";
-import { getItems, addNewItem } from "../../utils/Api";
+import { getItems, addNewItem, deleteCard } from "../../utils/Api";
 import { CurrentTemperatureUnitContext } from "../../utils/contexts/CurrentTemperatureUnitContext";
 
 function App() {
@@ -75,22 +75,17 @@ function App() {
       .catch(console.error);
   }, []);
 
-  function handleDeleteCard(evt) {
-    api
-      .deleteCard(currentItem._id)
-      .then(() => {
-        setClothing(
-          clothing.filter((element) => {
-            return currentItem._id != element._id;
-          })
-        );
-        closeModal();
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-    evt.preventDefault();
-  } //new delete
+  const handleDeleteItem = async (cardId) => {
+    try {
+      await deleteCard(cardId);
+      const updatedClothingArray = clothingArray.filter(
+        (item) => item._id !== id
+      );
+      setClothingArray(updatedClothingArray);
+    } catch (error) {
+      console.error("Error deleting item:", error);
+    }
+  };
 
   <ModalWithForm
     title="New garment"
@@ -183,6 +178,7 @@ function App() {
           activeModal={activeModal}
           card={selectedCard}
           closeActiveModal={closeActiveModal}
+          handleDeleteItem={handleDeleteItem}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

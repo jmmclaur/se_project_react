@@ -1,12 +1,11 @@
 const baseUrl = "http://localhost:3001";
 
-function getItems() {
-  return fetch(`${baseUrl}/items`).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+async function getItems() {
+  const res = await fetch(`${baseUrl}/items`);
+  return await (res.ok ? res.json() : Promise.reject(`Error: ${res.status}`));
 }
 
-function addNewItem({ name, imageUrl, weather }) {
+async function addNewItem({ name, link, weather }) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
@@ -14,10 +13,16 @@ function addNewItem({ name, imageUrl, weather }) {
     },
     body: JSON.stringify({
       name,
+      link,
       weather,
-      imageUrl,
     }),
-  }).then();
+  });
 }
 
-export { getItems, addNewItem };
+function deleteCard(cardId) {
+  return this._addNewItem(`/items/${cardId}`, "DELETE");
+}
+
+export { getItems, addNewItem, deleteCard };
+
+//imageUrl to link

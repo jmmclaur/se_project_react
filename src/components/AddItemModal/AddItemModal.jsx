@@ -2,14 +2,14 @@ import React from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState } from "react";
 
-const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
+const AddItemModal = ({ handleCloseModal, onAddNewItem, isOpen }) => {
   const [name, setName] = useState("");
-  const [imageUrl, setUrl] = useState("");
+  const [link, setUrl] = useState("");
   const [weather, setWeather] = useState("");
   const handleNameChange = (e) => {
     console.log(e.target.value);
     setName(e.target.value);
-  };
+  }; //maybe handleNameChange is causing issue?
 
   const handleUrlChange = (e) => {
     console.log(e.target.value);
@@ -23,7 +23,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({ name, imageUrl, weather });
+    onAddNewItem({ name, link, weather }); //imageUrl to link
   };
   return (
     <ModalWithForm
@@ -31,7 +31,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
       buttonText="Add garment"
       isOpen={isOpen}
       closeActiveModal={handleCloseModal}
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit} //something is wrong here (follow dot)
     >
       <label htmlFor="name" className="modal__label">
         Name{" "}
@@ -41,17 +41,18 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
           id="name"
           placeholder="Name"
           value={name}
+          //onChange={(e) => setName(e.target.value)}
           onChange={handleNameChange}
         />
       </label>
-      <label htmlFor="ImageUrl" className="modal__label">
+      <label htmlFor="link" className="modal__label">
         Image{" "}
         <input
           type="text"
           className="modal__input"
-          id="imageUrl"
+          id="link"
           placeholder="Image URL"
-          value={imageUrl}
+          value={link}
           onChange={handleUrlChange}
         />
       </label>

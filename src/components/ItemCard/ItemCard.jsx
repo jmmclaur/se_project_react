@@ -13,7 +13,7 @@ function ItemCard({ item, onCardClick }) {
       <img
         onClick={handleCardClick}
         className="card__image"
-        src={item.link}
+        src={item.link} //item.link to item.imageUrl
         alt={item.name}
       />
     </li>
@@ -21,3 +21,6 @@ function ItemCard({ item, onCardClick }) {
 }
 
 export default ItemCard;
+
+//link pulls up the actual default image, but if I switch to imageUrl the picture is broken.
+//Why?

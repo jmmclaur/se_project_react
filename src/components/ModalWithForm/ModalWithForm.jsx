@@ -6,13 +6,14 @@ function ModalWithForm({
   buttonText,
   isOpen,
   closeActiveModal,
+  onSubmit,
 }) {
   return (
     <div className={isOpen ? `modal modal_opened` : `modal_closed`}>
       <div className="modal__container">
         <h2 className="modal__title">{title}</h2>
         <button onClick={closeActiveModal} className="modal__closer"></button>
-        <form className="modal__form">
+        <form className="modal__form" onSubmit={onSubmit}>
           {children}
           <button type="submit" className="modal__submit">
             {buttonText}
@@ -26,4 +27,4 @@ function ModalWithForm({
 export default ModalWithForm;
 //try onClose instead of onClick
 
-//close button isn't pulling up
+//submit should work now, was missing onSubmit before. Let's give it a try

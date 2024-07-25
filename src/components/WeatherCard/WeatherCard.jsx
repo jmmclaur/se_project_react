@@ -11,7 +11,7 @@ function WeatherCard({ weatherData }) {
     );
   });
 
-  const imageUrl =
+  const link =
     weatherOption?.url ||
     (weatherData.isDay
       ? defaultWeatherOptions.day.url
@@ -29,7 +29,7 @@ function WeatherCard({ weatherData }) {
     <section className="weather-card">
       <p className="weather-card__temp">{weatherData.temp.F}° F</p>
       <img
-        src={imageUrl}
+        src={link}
         alt={weatherOption?.condition || "default"}
         className="weather-card__image"
       />
@@ -38,3 +38,5 @@ function WeatherCard({ weatherData }) {
 }
 
 export default WeatherCard;
+
+//imageUrl to link

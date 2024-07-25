@@ -8,13 +8,13 @@ import ItemModal from "../ItemModal/ItemModal";
 import Main from "../Main/Main";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import Profile from "../Profile/Profile";
-import ClothesSection from "../ClothesSection/ClothesSection";
+//import ClothesSection from "../ClothesSection/ClothesSection";
+//import ConfirmationModal from "../ConfirmationModal/ConfirmationModal.jsx";
 import { Routes, Route } from "react-router-dom";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, apiKey } from "../../utils/constants";
 import { getItems, addNewItem } from "../../utils/Api";
 import { CurrentTemperatureUnitContext } from "../../utils/contexts/CurrentTemperatureUnitContext";
-import { defaultClothingItems } from "../../utils/constants";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -45,7 +45,7 @@ function App() {
     setActiveModal("");
   };
 
-  const onAddItem = (values) => {
+  const onAddNewItem = (values) => {
     console.log(values);
     addNewItem(values);
   };
@@ -75,6 +75,23 @@ function App() {
       .catch(console.error);
   }, []);
 
+  function handleDeleteCard(evt) {
+    api
+      .deleteCard(currentItem._id)
+      .then(() => {
+        setClothing(
+          clothing.filter((element) => {
+            return currentItem._id != element._id;
+          })
+        );
+        closeModal();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    evt.preventDefault();
+  } //new delete
+
   <ModalWithForm
     title="New garment"
     buttonText="Add garment"
@@ -85,13 +102,13 @@ function App() {
       Name{" "}
     </label>
     <input type="text" className="modal__input" id="name" placeholder="Name" />
-    <label htmlFor="imageUrl" className="modal__label" label="imageURL">
+    <label htmlFor="link" className="modal__label" label="imageURL">
       Image{" "}
     </label>
     <input
       type="text"
       className="modal__input"
-      id="imageUrl"
+      id="link"
       placeholder="Image URL"
     />
     <fieldset className="modal__radio-buttons">
@@ -140,16 +157,16 @@ function App() {
                 <Main
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
-                  clothingArray={setClothingItems} //clothingArray
+                  clothingArray={defaultClothingItems} //setClothingItems
                 />
               }
             />
             <Route
-              path="/profile"
+              path="/Profile"
               element={
                 <Profile
                   handleCardClick={handleCardClick}
-                  clothingArray={setClothingItems} //clothingArray
+                  clothingArray={defaultClothingItems} //this is set correctly now
                 />
               }
             />
@@ -159,8 +176,8 @@ function App() {
 
         <AddItemModal
           handleCloseModal={closeActiveModal}
-          onAddItem={onAddItem}
-          isOpen={activeModal === "add-garmet"}
+          onAddNewItem={onAddNewItem}
+          isOpen={activeModal === "add-garment"}
         />
         <ItemModal
           activeModal={activeModal}

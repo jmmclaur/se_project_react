@@ -24,14 +24,21 @@ function deleteCard(cardId) {
   return this._addNewItem(`/items/${cardId}`, "DELETE");
 } */
 
-async function deleteCard(cardId) {
-  const res = await fetch(`${baseUrl}/items/${cardId}`, {
+async function deleteItemById(Id) {
+  const res = await fetch(`${baseUrl}/items/${Id}`, {
     method: "DELETE",
-    headers: headers,
   });
   return checkResponse(res);
 }
 
-export { getItems, addNewItem, deleteCard };
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  } else {
+    return Promise.reject(`Error: ${res.status}`);
+  }
+}
+
+export { getItems, addNewItem, deleteItemById };
 
 //imageUrl to link

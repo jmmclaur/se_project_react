@@ -1,10 +1,8 @@
 import "./ItemModal.css";
 
-function ItemModal({ activeModal, card, closeActiveModal }) {
-  console.log(card?.link);
+function ItemModal({ activeModal, card, closeActiveModal, handleDelete }) {
   const handleDeleteCard = () => {
-    handleDeleteCard(card._id);
-    onClick();
+    handleDelete(card._id);
   };
   return (
     <div className={`modal ${activeModal === "preview" && "modal_opened"}`}>

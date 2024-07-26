@@ -1,11 +1,14 @@
 .profile {
   display: flex;
   gap: 116px;
+  width: 500px;
+  height: 500px;
+  background-color: black;
 }
 
 .profile__clothing-items {
   width: 100%;
-  flex-direction: row;
+  flex-direction: column;
   margin: 0;
   padding: 0;
   list-style-type: none;

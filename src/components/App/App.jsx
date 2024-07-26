@@ -13,7 +13,7 @@ import Profile from "../Profile/Profile";
 import { Routes, Route } from "react-router-dom";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, apiKey } from "../../utils/constants";
-import { getItems, addNewItem, deleteCard } from "../../utils/Api";
+import { getItems, addNewItem, deleteItemById } from "../../utils/Api";
 import { CurrentTemperatureUnitContext } from "../../utils/contexts/CurrentTemperatureUnitContext";
 
 function App() {
@@ -75,13 +75,15 @@ function App() {
       .catch(console.error);
   }, []);
 
-  const handleDeleteItem = async (cardId) => {
+  const handleDelete = async (id) => {
     try {
-      await deleteCard(cardId);
-      const updatedClothingArray = clothingArray.filter(
+      //console.log("hi");
+      await deleteItemById(id);
+      const updatedDefaultClothingItems = defaultClothingItems.filter(
         (item) => item._id !== id
       );
-      setClothingArray(updatedClothingArray);
+      setClothingItems(updatedDefaultClothingItems);
+      closeActiveModal();
     } catch (error) {
       console.error("Error deleting item:", error);
     }
@@ -178,7 +180,7 @@ function App() {
           activeModal={activeModal}
           card={selectedCard}
           closeActiveModal={closeActiveModal}
-          handleDeleteItem={handleDeleteItem}
+          handleDelete={handleDelete}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

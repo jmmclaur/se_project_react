@@ -6,4 +6,6 @@
 .sidebar__username {
   white-space: nowrap;
   margin-left: 16px;
+  white-space: nowrap;
+  margin-left: 10px;
 }

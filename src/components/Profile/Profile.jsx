@@ -1,7 +1,24 @@
-import Sidebar from "../SideBar/SideBar";
+import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
 import "./Profile.css";
 
+function Profile({ handleCardClick, clothingItems, handleAddClick }) {
+  return (
+    <div className="profile">
+      <section className="profile__sidebar">
+        <SideBar />
+      </section>
+      <section className="profile__clothing-item">
+        <ClothesSection
+          handleCardClick={handleCardClick}
+          clothingItems={clothingItems}
+          handleAddClick={handleAddClick}
+        />
+      </section>
+    </div>
+  );
+}
+/*
 const Profile = ({ handleCardClick, setClothingItems }) => {
   return (
     <div className="profile">
@@ -16,6 +33,6 @@ const Profile = ({ handleCardClick, setClothingItems }) => {
       </section>
     </div>
   );
-};
+}; */
 
 export default Profile;

@@ -10,6 +10,7 @@
   width: 50px;
   height: 30px;
   appearance: none;
+  margin-right: 20px;
 }
 
 .switch__slider {
@@ -24,11 +25,11 @@
 }
 
 .switch__slider-F {
-  left: 26px;
+  left: 25px;
 }
 
 .switch__slider-C {
-  left: 2px;
+  left: 0;
 }
 
 .switch__active {
@@ -38,7 +39,7 @@
 
 .switch__temp-C {
   position: absolute;
-  left: 10px;
+  left: 8px;
   top: -9px;
   color: white;
 }
@@ -46,6 +47,6 @@
 .switch__temp-F {
   position: absolute;
   top: -9px;
-  left: 33px;
+  left: 36px;
   color: white;
 }

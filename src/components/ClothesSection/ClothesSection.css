@@ -1,5 +1,7 @@
 .clothes-section {
   display: flex;
+  font-weight: 700;
+  font-family: "CabinetGrotesk-Bold", sans-serif;
 }
 
 .clothes-section__items {
@@ -11,10 +13,13 @@
 }
 
 .clothes-section__buttons {
+  display: flex;
   gap: 20px;
 }
 
 .clothes-section__add-item-btn {
+  flex-direction: row;
+  flex-wrap: wrap;
   font-family: "CabinetGrotesk-Bold", sans-serif;
   background-color: transparent;
   border: none;

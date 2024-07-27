@@ -15,6 +15,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, apiKey } from "../../utils/constants";
 import { getItems, addNewItem, deleteItemById } from "../../utils/Api";
 import { CurrentTemperatureUnitContext } from "../../utils/contexts/CurrentTemperatureUnitContext";
+import React from "react";
 
 function App() {
   const [weatherData, setWeatherData] = useState({

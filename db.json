@@ -43,118 +43,16 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Shorts.png?etag=d728c496643f610de8d8fea92dd915ba"
     },
     {
-      "_id": 12,
-      "name": "Skirt",
-      "weather": "hot",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Skirt.png?etag=27a6bea7e1b63218820d615876fa31d1"
-    },
-    {
-      "_id": 14,
-      "name": "Sunglasses",
-      "weather": "hot",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sunglasses.png?etag=a1bced9e331d36cb278c45df51150432"
-    },
-    {
-      "_id": 16,
-      "name": "T-Shirt",
-      "weather": "hot",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
-    },
-    {
       "name": "Glovers",
       "weather": "cold",
       "imageUrl": "https://zpacks.com/cdn/shop/products/zpacks-ultralight-possumdown-gloves_2048x.jpg?v=1575921409",
       "_id": 17
     },
     {
-      "name": "Armor",
-      "weather": "hot",
-      "imageUrl": "https://www.by-the-sword.com/images/product/large/GH0092.jpg",
-      "_id": 19
-    },
-    {
       "name": "Necktie",
       "weather": "cold",
       "imageUrl": "https://guide-images.cdn.ifixit.com/igi/KGdkYcSbZNVOmL5I.large",
       "_id": 20
-    },
-    {
-      "name": "dd",
-      "weather": "hot",
-      "imageUrl": "https://th.bing.com/th?id=OIP.GmFtA0aTBPPuhV5E4QN5GAHaGh&w=266&h=234&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "_id": 21
-    },
-    {
-      "name": "dd",
-      "weather": "hot",
-      "imageUrl": "https://th.bing.com/th?id=OIP.GmFtA0aTBPPuhV5E4QN5GAHaGh&w=266&h=234&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "_id": 22
-    },
-    {
-      "name": "dd",
-      "weather": "hot",
-      "imageUrl": "https://th.bing.com/th?id=OIP.GmFtA0aTBPPuhV5E4QN5GAHaGh&w=266&h=234&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "_id": 23
-    },
-    {
-      "name": "dd",
-      "weather": "hot",
-      "imageUrl": "https://th.bing.com/th?id=OIP.GmFtA0aTBPPuhV5E4QN5GAHaGh&w=266&h=234&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "_id": 24
-    },
-    {
-      "name": "dd",
-      "weather": "hot",
-      "imageUrl": "https://th.bing.com/th?id=OIP.GmFtA0aTBPPuhV5E4QN5GAHaGh&w=266&h=234&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "_id": 25
-    },
-    {
-      "name": "dd",
-      "weather": "hot",
-      "imageUrl": "https://th.bing.com/th?id=OIP.YAXlTjvtEKchdMVc5laZhwHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "_id": 28
-    },
-    {
-      "name": "dd",
-      "weather": "hot",
-      "imageUrl": "https://th.bing.com/th?id=OIP.YAXlTjvtEKchdMVc5laZhwHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "_id": 29
-    },
-    {
-      "name": "ss",
-      "weather": "hot",
-      "imageUrl": "https://th.bing.com/th?id=OIP.YAXlTjvtEKchdMVc5laZhwHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "_id": 30
-    },
-    {
-      "name": "ss",
-      "weather": "hot",
-      "imageUrl": "https://th.bing.com/th?id=OIP.YAXlTjvtEKchdMVc5laZhwHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "_id": 31
-    },
-    {
-      "name": "ss",
-      "weather": "hot",
-      "imageUrl": "https://th.bing.com/th?id=OIP.YAXlTjvtEKchdMVc5laZhwHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "_id": 32
-    },
-    {
-      "name": "ss",
-      "weather": "hot",
-      "imageUrl": "https://th.bing.com/th?id=OIP.YAXlTjvtEKchdMVc5laZhwHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "_id": 33
-    },
-    {
-      "name": "dd",
-      "weather": "hot",
-      "link": "https://th.bing.com/th?id=OIP.YAXlTjvtEKchdMVc5laZhwHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "_id": 34
-    },
-    {
-      "name": "dd",
-      "weather": "hot",
-      "link": "https://th.bing.com/th?id=OIP.YAXlTjvtEKchdMVc5laZhwHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "_id": 35
     },
     {
       "name": "",
@@ -173,108 +71,6 @@
       "weather": "",
       "link": "",
       "_id": 38
-    },
-    {
-      "name": "dd",
-      "weather": "hot",
-      "link": "https://th.bing.com/th?id=OIP.wezPWM0gMFPwo5LjNodYjwHaGp&w=263&h=236&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "_id": 39
-    },
-    {
-      "name": "dd",
-      "weather": "hot",
-      "link": "https://th.bing.com/th?id=OIP.wezPWM0gMFPwo5LjNodYjwHaGp&w=263&h=236&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "_id": 40
-    },
-    {
-      "name": "ddadadafd",
-      "weather": "hot",
-      "link": "https://th.bing.com/th?id=OIP.wezPWM0gMFPwo5LjNodYjwHaGp&w=263&h=236&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "_id": 41
-    },
-    {
-      "name": "ddada",
-      "weather": "hot",
-      "link": "https://th.bing.com/th?id=OIP.wezPWM0gMFPwo5LjNodYjwHaGp&w=263&h=236&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "_id": 42
-    },
-    {
-      "name": "ddada",
-      "weather": "hot",
-      "link": "https://th.bing.com/th?id=OIP.wezPWM0gMFPwo5LjNodYjwHaGp&w=263&h=236&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "_id": 43
-    },
-    {
-      "name": "dd",
-      "weather": "hot",
-      "link": "https://th.bing.com/th?id=OIP.87rC-vQdkf1I5qv74_2LjwHaHp&w=246&h=253&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "_id": 44
-    },
-    {
-      "name": "dd",
-      "weather": "hot",
-      "link": "https://th.bing.com/th?id=OIP.Vtxy0FjT_EfudI4cQk1kzAHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "_id": 45
-    },
-    {
-      "name": "dd",
-      "weather": "hot",
-      "link": "https://th.bing.com/th?id=OIP.Vtxy0FjT_EfudI4cQk1kzAHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "_id": 46
-    },
-    {
-      "name": "dd",
-      "link": "https://th.bing.com/th?id=OIP.Vtxy0FjT_EfudI4cQk1kzAHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "weather": "hot",
-      "_id": 53
-    },
-    {
-      "name": "dd",
-      "link": "https://th.bing.com/th?id=OIP.Vtxy0FjT_EfudI4cQk1kzAHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "weather": "hot",
-      "_id": 54
-    },
-    {
-      "name": "dd",
-      "link": "https://th.bing.com/th?id=OIP.87rC-vQdkf1I5qv74_2LjwHaHp&w=246&h=253&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "weather": "hot",
-      "_id": 57
-    },
-    {
-      "name": "ss",
-      "link": "https://th.bing.com/th?id=OIP.YAXlTjvtEKchdMVc5laZhwHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "weather": "hot",
-      "_id": 68
-    },
-    {
-      "name": "ss",
-      "link": "https://th.bing.com/th?id=OIP.YAXlTjvtEKchdMVc5laZhwHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "weather": "hot",
-      "_id": 70
-    },
-    {
-      "name": "adfdafdafda",
-      "link": "https://th.bing.com/th?id=OIP.YAXlTjvtEKchdMVc5laZhwHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "weather": "hot",
-      "_id": 71
-    },
-    {
-      "name": "adfd",
-      "link": "https://th.bing.com/th?id=OIP.GmFtA0aTBPPuhV5E4QN5GAHaGh&w=266&h=234&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "weather": "hot",
-      "_id": 72
-    },
-    {
-      "name": "ss",
-      "link": "https://th.bing.com/th?id=OIP.GmFtA0aTBPPuhV5E4QN5GAHaGh&w=266&h=234&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "weather": "hot",
-      "_id": 73
-    },
-    {
-      "name": "ss",
-      "link": "https://th.bing.com/th?id=OIP.GmFtA0aTBPPuhV5E4QN5GAHaGh&w=266&h=234&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "weather": "hot",
-      "_id": 74
     },
     {
       "name": "dd",
@@ -311,6 +107,18 @@
       "link": "https://th.bing.com/th/id/OIP.aD_xjDjEyuKdxUV_BEfarwHaHf?w=195&h=197&c=7&r=0&o=5&dpr=1.5&pid=1.7",
       "weather": "warm",
       "_id": 85
+    },
+    {
+      "name": "Tank Top",
+      "link": "https://th.bing.com/th/id/OIP.2D4-7dLy7bwQl6y8vWmKeAHaJ4?w=195&h=260&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+      "weather": "hot",
+      "_id": 86
+    },
+    {
+      "name": "Shorts",
+      "link": "https://th.bing.com/th/id/OIP.P_qySbAnz561i-eaoFdUTwHaHa?w=195&h=195&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+      "weather": "hot",
+      "_id": 87
     }
   ]
 }

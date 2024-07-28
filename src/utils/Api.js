@@ -19,11 +19,6 @@ async function addNewItem({ name, link, weather }) {
   });
 }
 
-/*
-function deleteCard(cardId) {
-  return this._addNewItem(`/items/${cardId}`, "DELETE");
-} */
-
 async function deleteItemById(Id) {
   const res = await fetch(`${baseUrl}/items/${Id}`, {
     method: "DELETE",

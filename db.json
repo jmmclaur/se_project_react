@@ -1,58 +1,10 @@
 {
   "items": [
     {
-      "_id": 0,
-      "name": "Hat",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Beanie.png?etag=bc10497cc80fa557f036e94f9999f7b2"
-    },
-    {
-      "_id": 1,
-      "name": "Boot",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Boot.png?etag=0953a2ea59f1c6ebc832fabacdc9c70e"
-    },
-    {
-      "_id": 3,
-      "name": "Coat",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4"
-    },
-    {
-      "_id": 5,
-      "name": "Hoodie",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Hoodie.png?etag=5f52451d0958ccb1016c78a45603a4e8"
-    },
-    {
-      "_id": 6,
-      "name": "Jacket",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Jacket.png?etag=f4bb188deaa25ac84ce2338be2d404ad"
-    },
-    {
-      "_id": 10,
-      "name": "Scarf",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Scarf.png?etag=74efbee93810c926b5507e862c6cb76c"
-    },
-    {
       "_id": 11,
       "name": "Shorts",
       "weather": "Hot",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Shorts.png?etag=d728c496643f610de8d8fea92dd915ba"
-    },
-    {
-      "name": "Glovers",
-      "weather": "cold",
-      "imageUrl": "https://zpacks.com/cdn/shop/products/zpacks-ultralight-possumdown-gloves_2048x.jpg?v=1575921409",
-      "_id": 17
-    },
-    {
-      "name": "Necktie",
-      "weather": "cold",
-      "imageUrl": "https://guide-images.cdn.ifixit.com/igi/KGdkYcSbZNVOmL5I.large",
-      "_id": 20
     },
     {
       "name": "",
@@ -73,12 +25,6 @@
       "_id": 38
     },
     {
-      "name": "dd",
-      "link": "https://th.bing.com/th?id=OIP.GmFtA0aTBPPuhV5E4QN5GAHaGh&w=266&h=234&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-      "weather": "cold",
-      "_id": 76
-    },
-    {
       "name": "Shirt",
       "link": "https://th.bing.com/th/id/OIP.bD3dT2CazF4__z4TJVz8FQHaHR?w=198&h=194&c=7&r=0&o=5&dpr=1.5&pid=1.7",
       "weather": "warm",
@@ -95,12 +41,6 @@
       "link": "https://th.bing.com/th/id/OIP.aD_xjDjEyuKdxUV_BEfarwHaHf?w=195&h=197&c=7&r=0&o=5&dpr=1.5&pid=1.7",
       "weather": "cold",
       "_id": 83
-    },
-    {
-      "name": "Jacket",
-      "link": "https://th.bing.com/th/id/OIP.aD_xjDjEyuKdxUV_BEfarwHaHf?w=195&h=197&c=7&r=0&o=5&dpr=1.5&pid=1.7",
-      "weather": "cold",
-      "_id": 84
     },
     {
       "name": "Jacket",

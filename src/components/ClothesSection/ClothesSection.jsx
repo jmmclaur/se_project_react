@@ -1,16 +1,19 @@
-//import Sidebar from "../SideBar/SideBar";
-import { defaultClothingItems } from "../../utils/constants";
+//import { defaultClothingItems } from "../../utils/constants";
 import React from "react";
 import ItemCard from "../ItemCard/ItemCard";
 import "./ClothesSection.css";
 
-function ClothesSection({ handleCardClick, defaultClothingItems }) {
+function ClothesSection({
+  handleCardClick,
+  handleAddClick,
+  defaultClothingItems,
+}) {
   return (
     <div className="clothes-section">
       <div className="clothes-section__buttons">
         <p>Your Items</p>
         <button
-          onClick={handleCardClick}
+          onClick={handleAddClick}
           type="button"
           className="clothes-section__add-item-btn"
         >
@@ -28,3 +31,6 @@ function ClothesSection({ handleCardClick, defaultClothingItems }) {
   );
 }
 export default ClothesSection;
+
+//the button for this isn't working yet
+//get a form to pull up for the +Add New button

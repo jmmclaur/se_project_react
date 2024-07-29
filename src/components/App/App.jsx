@@ -26,8 +26,6 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [defaultClothingItems, setClothingItems] = useState([]);
 
-  console.log(defaultClothingItems);
-  console.log(setClothingItems);
   const handleCardClick = (card) => {
     setSelectedCard(card);
     setActiveModal("preview");
@@ -83,6 +81,10 @@ function App() {
     }
   };
 
+  console.log("-----app------");
+  console.log(defaultClothingItems);
+  console.log("-----app------");
+
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
@@ -107,6 +109,7 @@ function App() {
                 <Profile
                   handleCardClick={handleCardClick}
                   clothingArray={defaultClothingItems}
+                  handleAddClick={handleAddClick}
                 />
               }
             />

@@ -5,7 +5,7 @@ async function getItems() {
   return await (res.ok ? res.json() : Promise.reject(`Error: ${res.status}`));
 }
 
-async function addNewItem({ name, link, weather }) {
+async function addNewItem(name, link, weather) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {

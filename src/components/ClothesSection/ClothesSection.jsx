@@ -1,5 +1,5 @@
 //import Sidebar from "../SideBar/SideBar";
-//import { defaultClothingItems } from "../../utils/constants";
+import { defaultClothingItems } from "../../utils/constants";
 import React from "react";
 import ItemCard from "../ItemCard/ItemCard";
 import "./ClothesSection.css";

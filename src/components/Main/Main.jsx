@@ -32,5 +32,4 @@ function Main({ weatherData, handleCardClick, clothingArray }) {
   );
 }
 
-//defaultClothingItems to clothingArray
 export default Main;

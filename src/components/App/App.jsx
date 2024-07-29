@@ -8,8 +8,6 @@ import ItemModal from "../ItemModal/ItemModal";
 import Main from "../Main/Main";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import Profile from "../Profile/Profile";
-//import ClothesSection from "../ClothesSection/ClothesSection";
-//import ConfirmationModal from "../ConfirmationModal/ConfirmationModal.jsx";
 import { Routes, Route } from "react-router-dom";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, apiKey } from "../../utils/constants";
@@ -26,13 +24,10 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  const [defaultClothingItems, setClothingItems] = useState([
-    {
-      _id: 0,
-      name: "Hat",
-    },
-  ]);
+  const [defaultClothingItems, setClothingItems] = useState([]);
 
+  console.log(defaultClothingItems);
+  console.log(setClothingItems);
   const handleCardClick = (card) => {
     setSelectedCard(card);
     setActiveModal("preview");
@@ -46,9 +41,9 @@ function App() {
     setActiveModal("");
   };
 
-  const onAddNewItem = (values) => {
-    console.log(values);
+  const onAddNewItem = async (values) => {
     addNewItem(values);
+    closeActiveModal();
   };
 
   const handleToggleSwitchChange = () => {
@@ -67,7 +62,6 @@ function App() {
       .catch(console.error);
   }, []);
 
-  //something is wrong for the section 80-86, why?
   useEffect(() => {
     getItems()
       .then((data) => {
@@ -78,7 +72,6 @@ function App() {
 
   const handleDelete = async (id) => {
     try {
-      //console.log("hi");
       await deleteItemById(id);
       const updatedDefaultClothingItems = defaultClothingItems.filter(
         (item) => item._id !== id
@@ -89,57 +82,6 @@ function App() {
       console.error("Error deleting item:", error);
     }
   };
-
-  <ModalWithForm
-    title="New garment"
-    buttonText="Add garment"
-    isOpen={activeModal === "add-garment"}
-    closeActiveModal={closeActiveModal}
-  >
-    <label htmlFor="name" className="modal__label" label="name">
-      Name{" "}
-    </label>
-    <input type="text" className="modal__input" id="name" placeholder="Name" />
-    <label htmlFor="link" className="modal__label" label="imageURL">
-      Image{" "}
-    </label>
-    <input
-      type="text"
-      className="modal__input"
-      id="link"
-      placeholder="Image URL"
-    />
-    <fieldset className="modal__radio-buttons">
-      <legend className="modal__legend">Select the weather type:</legend>
-      <label htmlFor="hot" className="modal__label modal__label_type_radio">
-        <input
-          id="hot"
-          type="radio"
-          className="modal__radio-input"
-          name="weather_item"
-        />
-        Hot
-      </label>
-      <label htmlFor="warm" className="modal__label modal__label_type_radio">
-        <input
-          id="warm"
-          type="radio"
-          className="modal__radio-input"
-          name="weather_item"
-        />
-        Warm
-      </label>
-      <label htmlFor="cold" className="modal__label modal__label_type_radio">
-        <input
-          id="cold"
-          type="radio"
-          className="modal__radio-input"
-          name="weather_item"
-        />
-        Cold
-      </label>
-    </fieldset>
-  </ModalWithForm>;
 
   return (
     <div className="page">
@@ -155,34 +97,37 @@ function App() {
                 <Main
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
-                  clothingArray={defaultClothingItems} //setClothingItems
+                  clothingArray={defaultClothingItems}
                 />
               }
             />
             <Route
-              path="/Profile"
+              path="/profile"
               element={
                 <Profile
                   handleCardClick={handleCardClick}
-                  clothingArray={defaultClothingItems} //this is set correctly now
+                  clothingArray={defaultClothingItems}
                 />
               }
             />
           </Routes>
           <Footer />
         </div>
-
-        <AddItemModal
-          handleCloseModal={closeActiveModal}
-          onAddNewItem={onAddNewItem}
-          isOpen={activeModal === "add-garment"}
-        />
-        <ItemModal
-          activeModal={activeModal}
-          card={selectedCard}
-          closeActiveModal={closeActiveModal}
-          handleDelete={handleDelete}
-        />
+        {activeModal === "add-garment" && (
+          <AddItemModal
+            handleCloseModal={closeActiveModal}
+            onAddNewItem={onAddNewItem}
+            isOpen={activeModal === "add-garment"}
+          />
+        )}
+        {activeModal === "preview" && (
+          <ItemModal
+            activeModal={activeModal}
+            card={selectedCard}
+            closeActiveModal={closeActiveModal}
+            handleDelete={handleDelete}
+          />
+        )}
       </CurrentTemperatureUnitContext.Provider>
     </div>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState } from "react";
+import { addNewItem } from "../../utils/Api";
 
 const AddItemModal = ({ handleCloseModal, onAddNewItem, isOpen }) => {
   const [name, setName] = useState("");
@@ -23,15 +24,15 @@ const AddItemModal = ({ handleCloseModal, onAddNewItem, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddNewItem({ name, link, weather }); //imageUrl to link
+    addNewItem(name, link, weather);
   };
   return (
     <ModalWithForm
-      title="New garment"
-      buttonText="Add garment"
+      title="New Garment"
+      buttonText="Add Garment"
       isOpen={isOpen}
       closeActiveModal={handleCloseModal}
-      onSubmit={handleSubmit} //something is wrong here (follow dot)
+      onSubmit={handleSubmit}
     >
       <label htmlFor="name" className="modal__label">
         Name{" "}
@@ -65,6 +66,7 @@ const AddItemModal = ({ handleCloseModal, onAddNewItem, isOpen }) => {
             value="hot"
             className="modal__radio-input"
             onChange={handleWeatherChange}
+            name="weather_item"
           />
           Hot
         </label>
@@ -75,6 +77,7 @@ const AddItemModal = ({ handleCloseModal, onAddNewItem, isOpen }) => {
             value="warm"
             className="modal__radio-input"
             onChange={handleWeatherChange}
+            name="weather_item"
           />
           Warm
         </label>
@@ -85,6 +88,7 @@ const AddItemModal = ({ handleCloseModal, onAddNewItem, isOpen }) => {
             value="cold"
             className="modal__radio-input"
             onChange={handleWeatherChange}
+            name="weather_item"
           />
           Cold
         </label>

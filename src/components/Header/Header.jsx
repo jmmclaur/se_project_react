@@ -16,6 +16,7 @@ function Header({ handleAddClick, weatherData }) {
         <img className="header__logo" src={logo} alt="header" />
       </Link>
       <p className="header__date-and-location">
+        {" "}
         {currentDate} , {weatherData.city}
       </p>
       <ToggleSwitch />

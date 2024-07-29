@@ -11,21 +11,18 @@ export const getWeather = ({ latitude, longitude }, APIKey) => {
 };
 
 export const filterWeatherData = (data) => {
-  const result = {};
+  const result = data;
   result.city = data.name;
-  result.temp = { F: data.main.temp };
-  result.type = getWeatherType(data.main.temp);
+  (result.temp = {
+    F: Math.round(data.main.temp),
+    C: Math.round(((data.main.temp - 32) * 5) / 9),
+  }),
+    (result.type = getWeatherType(data.main.temp));
   result.condition = data.weather[0].main.toLowerCase();
   result.isDay = isDay(data.sys, Date.now());
-  result.weather = {
-    temperature: {
-      F: Math.round(data.main.temp),
-      C: Math.round(((data.main.temp - 32) * 5) / 9),
-    },
-  };
-  console.log(result.weather);
+
   return result;
-};
+}; //fix
 
 const isDay = ({ sunrise, sunset }, now) => {
   return sunrise * 1000 < now && now < sunset * 1000;
@@ -40,7 +37,3 @@ const getWeatherType = (temperature) => {
     return "cold";
   }
 };
-
-/*new weather F to C, need to nest it 7.21.2024
-weather.temperature.F = data.main.temp;
-weather.temperature.C = Math.round(((data.main.temp - 32) * 5) / 9); */

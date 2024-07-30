@@ -22,32 +22,22 @@ function WeatherCard({ weatherData }) {
 
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   console.log(currentTemperatureUnit);
-  console.log(currentTemperatureUnit);
   const temp = weatherData?.temp?.[currentTemperatureUnit] || 999;
 
-  if (currentTemperatureUnit == "F") {
-    return (
-      <section className="weather-card">
-        <p className="weather-card__temp">{weatherData.temp.F}° F</p>
-        <img
-          src={link}
-          alt={weatherOption?.condition || "default"}
-          className="weather-card__image"
-        />
-      </section>
-    );
-  } else {
-    return (
-      <section className="weather-card">
-        <p className="weather-card__temp">{weatherData.temp.C}° C</p>
-        <img
-          src={link}
-          alt={weatherOption?.condition || "default"}
-          className="weather-card__image"
-        />
-      </section>
-    );
-  }
+  return (
+    <section className="weather-card">
+      <p className="weather-card__temp">
+        {currentTemperatureUnit === "F"
+          ? `${weatherData.temp.F}°F`
+          : `${weatherData.temp.C}°C`}
+      </p>
+      <img
+        src={link}
+        alt={weatherOption?.condition || "default"}
+        className="weather-card__image"
+      />
+    </section>
+  );
 }
 
 export default WeatherCard;

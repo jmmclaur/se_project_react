@@ -22,7 +22,7 @@ function App() {
     city: "",
   });
   const [activeModal, setActiveModal] = useState("");
-  const [selectedCard, setSelectedCard] = useState("");
+  const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [defaultClothingItems, setClothingItems] = useState([]);
 
@@ -53,6 +53,7 @@ function App() {
   useEffect(() => {
     getWeather(coordinates, apiKey)
       .then((data) => {
+        console.log("weather");
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
         console.log(filteredData);
@@ -63,6 +64,7 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
+        console.log("getitems");
         setClothingItems(data);
       })
       .catch(console.error);

@@ -27,6 +27,7 @@ function App() {
   const [defaultClothingItems, setClothingItems] = useState([]);
 
   const handleCardClick = (card) => {
+    console.log("Card clicked:", card);
     setSelectedCard(card);
     setActiveModal("preview");
   };
@@ -40,7 +41,8 @@ function App() {
   };
 
   const onAddNewItem = async (values) => {
-    addNewItem(values);
+    setClothingItems((prevItems) => [...prevItems, values]);
+    //addNewItem(values); new above
     closeActiveModal();
   };
 
@@ -110,12 +112,14 @@ function App() {
               element={
                 <Profile
                   handleCardClick={handleCardClick}
-                  clothingArray={defaultClothingItems}
+                  defaultClothingItems={defaultClothingItems}
+                  //clothingArray={defaultClothingItems} new above
                   handleAddClick={handleAddClick}
                 />
               }
             />
           </Routes>
+
           <Footer />
         </div>
         {activeModal === "add-garment" && (

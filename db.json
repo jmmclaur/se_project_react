@@ -1,36 +1,6 @@
 {
   "items": [
     {
-      "_id": 11,
-      "name": "Shorts",
-      "weather": "Hot",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Shorts.png?etag=d728c496643f610de8d8fea92dd915ba"
-    },
-    {
-      "name": "",
-      "weather": "",
-      "link": "",
-      "_id": 36
-    },
-    {
-      "name": "",
-      "weather": "",
-      "link": "",
-      "_id": 37
-    },
-    {
-      "name": "",
-      "weather": "",
-      "link": "",
-      "_id": 38
-    },
-    {
-      "name": "Shirt",
-      "link": "https://th.bing.com/th/id/OIP.bD3dT2CazF4__z4TJVz8FQHaHR?w=198&h=194&c=7&r=0&o=5&dpr=1.5&pid=1.7",
-      "weather": "warm",
-      "_id": 81
-    },
-    {
       "name": "Jacket",
       "link": "https://th.bing.com/th/id/OIP.XUuxbBx-MvH2qx2uhTdRxgHaKd?w=195&h=276&c=7&r=0&o=5&dpr=1.5&pid=1.7",
       "weather": "cold",

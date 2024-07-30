@@ -23,7 +23,11 @@ function ClothesSection({
       <ul className="clothes-section__items">
         {defaultClothingItems?.map((item) => {
           return (
-            <ItemCard key={item._id} item={item} onClick={handleCardClick} />
+            <ItemCard
+              key={item._id}
+              item={item}
+              onClick={() => handleCardClick(item)}
+            />
           );
         })}
       </ul>
@@ -32,5 +36,7 @@ function ClothesSection({
 }
 export default ClothesSection;
 
+//changed item._id to item.id for new stuff 7/30
+//also updated from onClick={handleCardClick} to the new above 7/30
 //the button for this isn't working yet
 //get a form to pull up for the +Add New button

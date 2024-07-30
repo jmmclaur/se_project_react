@@ -14,7 +14,7 @@ function Profile({ handleCardClick, defaultClothingItems, handleAddClick }) {
       <section className="profile__clothing-item">
         <ClothesSection
           handleCardClick={handleCardClick}
-          defaultClothingItems={defaultClothingItems}
+          defaultClothingItems={defaultClothingItems} //this now matches app
           handleAddClick={handleAddClick}
         />
       </section>

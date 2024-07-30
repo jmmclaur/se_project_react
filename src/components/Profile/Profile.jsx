@@ -3,9 +3,6 @@ import ClothesSection from "../ClothesSection/ClothesSection";
 import "./Profile.css";
 
 function Profile({ handleCardClick, defaultClothingItems, handleAddClick }) {
-  console.log("-----profile------");
-  console.log(defaultClothingItems);
-  console.log("-----profile------");
   return (
     <div className="profile">
       <section className="profile__sidebar">

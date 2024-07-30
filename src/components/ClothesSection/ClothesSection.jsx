@@ -20,6 +20,7 @@ function ClothesSection({
           + Add New
         </button>
       </div>
+
       <ul className="clothes-section__items">
         {defaultClothingItems?.map((item) => {
           return (

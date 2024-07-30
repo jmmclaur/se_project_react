@@ -85,10 +85,6 @@ function App() {
     }
   };
 
-  console.log("-----app------");
-  console.log(defaultClothingItems);
-  console.log("-----app------");
-
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
@@ -113,7 +109,6 @@ function App() {
                 <Profile
                   handleCardClick={handleCardClick}
                   defaultClothingItems={defaultClothingItems}
-                  //clothingArray={defaultClothingItems} new above
                   handleAddClick={handleAddClick}
                 />
               }

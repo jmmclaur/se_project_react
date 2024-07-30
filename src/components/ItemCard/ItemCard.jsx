@@ -3,23 +3,6 @@ import "./ItemCard.css";
 function ItemCard({ item, onClick }) {
   console.log(item);
 
-  /*//old below 
-  return (
-    <div className="item-card" onClick={onClick}>
-      <p>
-        {item.name} {item.link}
-      </p>
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          onClick(item);
-        }}
-      >
-        Delete
-      </button>
-    </div>
-  ); */
-
   return (
     <li className="card">
       <div className="card__name-container">
@@ -28,7 +11,7 @@ function ItemCard({ item, onClick }) {
       <img
         onClick={onClick}
         className="card__image"
-        src={item.link} //item.link to item.imageUrl
+        src={item.link}
         alt={item.name}
       />
     </li>

@@ -99,7 +99,8 @@ function App() {
                 <Main
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
-                  clothingArray={defaultClothingItems}
+                  defaultClothingItems={defaultClothingItems}
+                  handleAddClick={handleAddClick}
                 />
               }
             />

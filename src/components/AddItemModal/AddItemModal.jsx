@@ -25,6 +25,7 @@ const AddItemModal = ({ handleCloseModal, onAddNewItem, isOpen }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     addNewItem(name, link, weather);
+    window.location.reload();
   };
   return (
     <ModalWithForm

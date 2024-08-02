@@ -1,8 +1,6 @@
 import "./ItemCard.css";
 
 function ItemCard({ item, onClick }) {
-  console.log(item);
-
   return (
     <li className="card">
       <div className="card__name-container">

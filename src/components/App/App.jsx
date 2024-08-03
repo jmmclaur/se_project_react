@@ -26,6 +26,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [defaultClothingItems, setClothingItems] = useState([]);
 
+  console.log(defaultClothingItems);
   const handleCardClick = (card) => {
     console.log("Card clicked:", card);
     setSelectedCard(card);

@@ -11,19 +11,19 @@
 .card__name {
   font-family: "CabinetGrotesk-Bold", sans-serif;
   color: #000000;
-  opacity: 0.6;
   background-color: white;
   font-size: 16px;
   font-weight: 700;
   line-height: 20px;
-  margin: 0;
+  border-radius: 10%;
+  padding: 2px 15px;
+  opacity: 0.6;
 }
 
 .card__name-container {
   display: flex;
   position: absolute;
-  margin: 0;
-  padding-top: 18px;
+  margin: -30px;
   gap: 4px;
   align-items: center;
 }

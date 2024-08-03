@@ -29,6 +29,12 @@
       "link": "https://www.merchology.com/cdn/shop/products/EB501_black_1024x1024.jpg?v=1571267268",
       "weather": "cold",
       "_id": 91
+    },
+    {
+      "name": "Shirt",
+      "link": "https://th.bing.com/th/id/OIP.QVnOX2GSI7iY5fNPyCHdrwHaH8?w=183&h=197&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+      "weather": "hot",
+      "_id": 92
     }
   ]
 }

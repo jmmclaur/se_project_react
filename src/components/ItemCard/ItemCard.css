@@ -5,7 +5,7 @@
   position: relative;
   display: flex;
   border-radius: 16px;
-  border: 1px #000000;
+  border: 1px solid #0000004d;
 }
 
 .card__name {
@@ -13,7 +13,9 @@
   color: #000000;
   opacity: 0.6;
   background-color: white;
-  font: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
   margin: 0;
 }
 

@@ -41,9 +41,11 @@ function App() {
   };
 
   const onAddNewItem = async (values) => {
-    setClothingItems((prevItems) => [...prevItems, values]);
-    //addNewItem(values); new above
-    closeActiveModal();
+    console.log(values);
+    addNewItem(values.name, values.link, values.weather).then((data) => {
+      setClothingItems((prevItems) => [...prevItems, data]);
+      closeActiveModal();
+    });
   };
 
   const handleToggleSwitchChange = () => {

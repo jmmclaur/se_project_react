@@ -16,6 +16,8 @@ async function addNewItem(name, link, weather) {
       link,
       weather,
     }),
+  }).then((res) => {
+    return checkResponse(res);
   });
 }
 

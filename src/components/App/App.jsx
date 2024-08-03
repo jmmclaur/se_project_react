@@ -42,7 +42,6 @@ function App() {
   };
 
   const onAddNewItem = async (values) => {
-    console.log(values);
     addNewItem(values.name, values.link, values.weather)
       .then((data) => {
         setClothingItems((prevItems) => [...prevItems, data]);

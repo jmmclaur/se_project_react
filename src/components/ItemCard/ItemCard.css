@@ -6,6 +6,7 @@
   display: flex;
   border-radius: 16px;
   border: 1px solid #0000004d;
+  padding: 0;
 }
 
 .card__name {
@@ -21,7 +22,6 @@
 .card__name-container {
   display: flex;
   position: absolute;
-  margin: -30px;
   gap: 4px;
   align-items: center;
   background-color: white;
@@ -31,4 +31,5 @@
 .card__image {
   width: 100%;
   border-radius: 16px;
+  object-fit: cover;
 }

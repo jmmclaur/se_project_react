@@ -44,7 +44,7 @@ function App() {
   const onAddNewItem = async (values) => {
     addNewItem(values.name, values.link, values.weather)
       .then((data) => {
-        setClothingItems((prevItems) => [...prevItems, data]);
+        setClothingItems((prevItems) => [data, ...prevItems]);
         closeActiveModal();
       })
       .catch(console.error);

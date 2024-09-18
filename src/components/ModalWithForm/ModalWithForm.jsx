@@ -7,17 +7,27 @@ function ModalWithForm({
   isOpen,
   closeActiveModal,
   onSubmit,
+  showLink,
+  linkText,
+  onLinkClick,
 }) {
   return (
     <div className={isOpen ? `modal modal_opened` : `modal_closed`}>
-      <div className="modal__container">
+      <div className="modal__container modal__content_type_form">
         <h2 className="modal__title">{title}</h2>
         <button onClick={closeActiveModal} className="modal__closer"></button>
         <form className="modal__form" onSubmit={onSubmit}>
           {children}
-          <button type="submit" className="modal__submit">
-            {buttonText}
-          </button>
+          <div className="modal__actions">
+            <button type="submit" className="modal__submit">
+              {buttonText}
+            </button>
+            {showLink && (
+              <span onClick={onLinkClick} className="modal__link">
+                {linkText}
+              </span>
+            )}
+          </div>
         </form>
       </div>
     </div>

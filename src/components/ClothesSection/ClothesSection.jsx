@@ -1,5 +1,5 @@
-//import { defaultClothingItems } from "../../utils/constants";
-import React from "react";
+import { CurrentUserContext } from "../../utils/contexts/CurrentUserContext";
+import React, { useContext } from "react";
 import ItemCard from "../ItemCard/ItemCard";
 import "./ClothesSection.css";
 
@@ -7,7 +7,13 @@ function ClothesSection({
   handleCardClick,
   handleAddClick,
   defaultClothingItems,
+  isLoggedIn,
+  onCardLike,
 }) {
+  const currentUser = useContext(CurrentUserContext);
+  const userItems = defaultClothingItems.filter(
+    (item) => item.owner === currentUser?._id
+  );
   return (
     <div className="clothes-section">
       <div className="clothes-section__buttons">
@@ -21,12 +27,15 @@ function ClothesSection({
         </button>
       </div>
       <ul className="clothes-section__items">
-        {defaultClothingItems?.map((item) => {
+        {userItems.map((item) => {
           return (
             <ItemCard
-              key={item._id}
+              key={item._id || item.id}
               item={item}
-              onClick={() => handleCardClick(item)}
+              onCardClick={handleCardClick}
+              onClick={onClick}
+              onCardLike={onCardLike}
+              isLoggedIn={isLoggedIn}
             />
           );
         })}
@@ -35,8 +44,3 @@ function ClothesSection({
   );
 }
 export default ClothesSection;
-
-//changed item._id to item.id for new stuff 7/30
-//also updated from onClick={handleCardClick} to the new above 7/30
-//the button for this isn't working yet
-//get a form to pull up for the +Add New button

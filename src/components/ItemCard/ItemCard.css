@@ -33,3 +33,17 @@
   border-radius: 16px;
   object-fit: cover;
 }
+
+.card__like-btn {
+  padding: 0;
+  width: 18px;
+  height: 15px;
+  border-style: none;
+  margin: 0;
+  transition: 0.3s linear;
+  cursor: pointer;
+}
+
+.card__like-btn:hover {
+  opacity: 50%;
+}

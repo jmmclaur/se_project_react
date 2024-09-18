@@ -9,9 +9,12 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "dbstart": "json-server --watch db.json --id _id --port 3000"
   },
   "dependencies": {
+    "express": "^4.21.0",
+    "mongoose": "^8.6.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.25.1"
@@ -21,9 +24,14 @@
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.2.1",
     "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.10.0",
+    "eslint-plugin-import": "^2.30.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "nodemon": "^3.1.4",
+    "prettier": "^2.8.8",
     "vite": "^5.2.0"
   },
   "homepage": "https://jmmclaur.github.io/se_project_react/"

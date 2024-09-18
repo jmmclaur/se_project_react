@@ -1,43 +1,5 @@
-import { processServerResponse } from "./processServer";
+//import { processServerResponse } from "./processServer";
 const baseUrl = "http://localhost:3001";
-
-function getItems() {
-  return fetch(`${baseUrl}/items`).then(processServerResponse);
-}
-/* async function getItems() {
-  const res = await fetch(`${baseUrl}/items`);
-  return await (res.ok ? res.json() : Promise.reject(`Error: ${res.status}`));
-} new above */
-
-async function addNewItem(name, link, weather) {
-  return fetch(`${baseUrl}/items`, {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify({
-      name,
-      link,
-      weather,
-    }),
-  }).then(processServerResponse);
-  /*.then((res) => {
-    return checkResponse(res);
-  }); */
-}
-
-function deleteItemById(id) {
-  return fetch(`${baseUrl}/items/${id}`, {
-    method: "DELETE",
-  }).then(processServerResponse);
-}
-/*
-async function deleteItemById(Id) {
-  const res = await fetch(`${baseUrl}/items/${Id}`, {
-    method: "DELETE",
-  });
-  return checkResponse(res);
-} 
 
 function checkResponse(res) {
   if (res.ok) {
@@ -45,8 +7,96 @@ function checkResponse(res) {
   } else {
     return Promise.reject(`Error: ${res.status}`);
   }
-} new above */
+}
 
-export { getItems, addNewItem, deleteItemById };
+function getItems() {
+  return fetch(`${baseUrl}/items`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(checkResponse);
+}
 
-//imageUrl to link
+const getUserInfo = (token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkRes);
+};
+
+const updateUserInfo = (name, avatar, token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(checkRes);
+};
+
+async function addNewItem(name, link, weather, token) {
+  return fetch(`${baseUrl}/items`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name,
+      link,
+      weather,
+    }),
+  }).then(checkResponse);
+}
+
+function deleteItemById(id, token) {
+  return fetch(`${baseUrl}/items/${id}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+}
+
+function addCardLike(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+}
+
+function removeCardLike(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+}
+
+export {
+  checkResponse,
+  getItems,
+  addNewItem,
+  deleteItemById,
+  getUserInfo,
+  updateUserInfo,
+  addCardLike,
+  removeCardLike,
+};

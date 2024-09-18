@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useState } from "react";
 
 const AddItemModal = ({ handleCloseModal, onAddNewItem, isOpen }) => {
   const [name, setName] = useState("");
@@ -9,7 +8,7 @@ const AddItemModal = ({ handleCloseModal, onAddNewItem, isOpen }) => {
   const handleNameChange = (e) => {
     console.log(e.target.value);
     setName(e.target.value);
-  }; //maybe handleNameChange is causing issue?
+  };
 
   const handleUrlChange = (e) => {
     console.log(e.target.value);
@@ -25,11 +24,13 @@ const AddItemModal = ({ handleCloseModal, onAddNewItem, isOpen }) => {
     e.preventDefault();
     onAddNewItem({ name, link, weather });
   };
+
   return (
     <ModalWithForm
       title="New Garment"
       buttonText="Add Garment"
       isOpen={isOpen}
+      //isOpen={activeModal === "add-garment"}
       closeActiveModal={handleCloseModal}
       onSubmit={handleSubmit}
     >
@@ -40,8 +41,9 @@ const AddItemModal = ({ handleCloseModal, onAddNewItem, isOpen }) => {
           className="modal__input"
           id="name"
           placeholder="Name"
+          minLength="1"
+          maxLength="30"
           value={name}
-          //onChange={(e) => setName(e.target.value)}
           onChange={handleNameChange}
         />
       </label>
@@ -59,6 +61,7 @@ const AddItemModal = ({ handleCloseModal, onAddNewItem, isOpen }) => {
       <fieldset className="modal__radio-buttons">
         <legend className="modal__legend">Select the weather type:</legend>
         <label htmlFor="hot" className="modal__label modal__label_type_radio">
+          {" "}
           <input
             id="hot"
             type="radio"

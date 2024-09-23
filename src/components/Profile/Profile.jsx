@@ -4,9 +4,9 @@ import "./Profile.css";
 
 function Profile({
   handleCardClick,
-  defaultClothingItems,
   handleAddClick,
   handleEditClick,
+  defaultClothingItems,
   handleLogOut,
   setIsLoggedIn,
   isLoggedIn,
@@ -24,8 +24,8 @@ function Profile({
       <section className="profile__clothing-item">
         <ClothesSection
           handleCardClick={handleCardClick}
-          defaultClothingItems={defaultClothingItems}
           handleAddClick={handleAddClick}
+          defaultClothingItems={defaultClothingItems}
           isLoggedIn={isLoggedIn}
           onCardLike={onCardLike}
         />

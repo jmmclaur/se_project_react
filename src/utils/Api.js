@@ -1,4 +1,3 @@
-//import { processServerResponse } from "./processServer";
 const baseUrl = "http://localhost:3001";
 
 function checkResponse(res) {
@@ -26,11 +25,11 @@ const getUserInfo = (token) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then(checkRes);
+  }).then(checkResponse);
 };
 
-const updateUserInfo = (name, avatar, token) => {
-  return fetch(`${baseUrl}/users/me`, {
+const updateUserInfo = async (name, avatar, token) => {
+  const res = await fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
       Accept: "application/json",
@@ -38,7 +37,8 @@ const updateUserInfo = (name, avatar, token) => {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name, avatar }),
-  }).then(checkRes);
+  });
+  return checkResponse(res);
 };
 
 async function addNewItem(name, link, weather, token) {
@@ -57,37 +57,40 @@ async function addNewItem(name, link, weather, token) {
   }).then(checkResponse);
 }
 
-function deleteItemById(id, token) {
-  return fetch(`${baseUrl}/items/${id}`, {
+async function deleteItemById(id, token) {
+  const res = await fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then(checkResponse);
+  });
+  return checkResponse(res);
 }
 
-function addCardLike(id, token) {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
+async function addCardLike(id, token) {
+  const res = await fetch(`${baseUrl}/items/${id}/likes`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then(checkResponse);
+  });
+  return checkResponse(res);
 }
 
-function removeCardLike(id, token) {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
+async function removeCardLike(id, token) {
+  const res = await fetch(`${baseUrl}/items/${id}/likes`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then(checkResponse);
+  });
+  return checkResponse(res);
 }
 
 export {

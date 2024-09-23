@@ -8,26 +8,25 @@ const EditPofileModal = ({
   handleEditProfile,
 }) => {
   const currentUser = useContext(CurrentUserContext);
-  // Name
+
   const [name, setName] = useState(currentUser?.name || "");
   const handleNameChange = (e) => {
     console.log(e.target.value);
     setName(e.target.value);
   };
-  // Avi
+
   const [avatar, setAvatar] = useState(currentUser?.avatar || "");
   const handleAvatarChange = (e) => {
     console.log(e.target.value);
     setAvatar(e.target.value);
   };
-  // Save
+
   const handleSubmit = (e) => {
     e.preventDefault();
     handleEditProfile(name, avatar);
     console.log("Changes saved.");
   };
 
-  // effect to have profile info appear in edit profile
   useEffect(() => {
     if (activeModal === "edit-profile" && currentUser) {
       setName(currentUser.name || "");

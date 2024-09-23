@@ -1,6 +1,6 @@
 import "./Header.css";
 import logo from "../../assets/logo_weather.svg";
-import avatar from "../../assets/avatar.svg";
+//import avatar from "../../assets/avatar.svg";
 import { Link } from "react-router-dom";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { useContext } from "react";

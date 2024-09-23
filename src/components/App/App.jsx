@@ -77,7 +77,7 @@ function App() {
       }
     };
 
-    document.addEventListener("click", handleClickOffModal); //what is clickoffmodal?
+    document.addEventListener("click", handleClickOffModal); //need to define this
     document.addEventListener("keydown", handleEscClose);
     return () => {
       document.removeEventListener("click", handleClickOffModal);
@@ -97,12 +97,25 @@ function App() {
         setCurrentUser(user);
         closeActiveModal();
         navigate("/profile");
-        //does /profile need to be /contexts?
       })
       .catch((error) => {
         console.error(error);
       });
   };
+
+  /*
+  const handleSignUp = (user) => {
+    auth
+      .createUser(user)
+      .then((newUser) => {
+        setIsLoggedIn(true);
+        setCurrentUser(newUser.data);
+        handleCloseModal();
+        localStorage.setItem("jwt", newUser.token);
+      })
+      .catch(console.error);
+  }; */
+
   const handleRegistration = (email, password, name, avatar) => {
     auth
       .register(email, password, name, avatar)
@@ -111,6 +124,7 @@ function App() {
         console.error(error);
       });
   };
+
   useEffect(() => {
     const jwt = getToken();
     if (!jwt) {
@@ -120,10 +134,12 @@ function App() {
       .getUserInfo(jwt)
       .then((res) => {
         setIsLoggedIn(true);
+        console.log(res.data);
         setCurrentUser(res.data);
       })
       .catch(console.error);
   }, [isLoggedIn]);
+  //check for a response then set it to the default user
 
   const handleLogOut = () => {
     removeToken();
@@ -156,16 +172,17 @@ function App() {
       .catch(console.error);
   }, []);
 
-  //does the onAddNewItem need to be kept anymore?
-  //rename in additem to onAddNewItem to match
-  const onAddNewItem = async (values) => {
+  //maybe there is an error w onaddnewitem w values
+  //should it be listed handleAddItem? no mine is onAddNewItem
+  const onAddNewItem = async (name, link, weather) => {
     const jwt = getToken();
-    addNewItem(values.name, values.link, values.weather, jwt)
-      .then((data) => {
-        setClothingItems((prevItems) => [data, ...prevItems]);
-        closeActiveModal();
-      })
-      .catch(console.error);
+    try {
+      const item = await addNewItem(name, link, weather, jwt);
+      setClothingItems((prevItems) => [item.data, ...prevItems]);
+      closeActiveModal();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleCardLike = ({ _id, isLiked }) => {
@@ -176,10 +193,9 @@ function App() {
           .addCardLike(id, jwt)
           .then((updatedCard) => {
             const updatedClothingItems = defaultClothingItemsClothingItems.map(
-              (item) => (item._id === id ? updatedCard.data : item)
+              item._id === id ? updatedCard.data : item
             );
             setClothingItems(updatedClothingItems);
-            //is it updatedClothingItem?
           })
           .catch((error) => {
             console.error(error);
@@ -188,7 +204,7 @@ function App() {
           .removeCardLike(id, jwt)
           .then((updatedCard) => {
             const updatedClothingItems = defaultClothingItemsClothingItems.map(
-              (item) => (item._id === id ? updatedCard.data : item)
+              item._id === id ? updatedCard.data : item
             );
             setClothingItems(updatedClothingItems);
           })
@@ -209,7 +225,6 @@ function App() {
         console.log("weather");
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
-        console.log(filteredData);
       })
       .catch(console.error);
   }, []);
@@ -217,7 +232,6 @@ function App() {
   useEffect(() => {
     getItems()
       .then(({ data }) => {
-        console.log("getitems");
         setClothingItems(data);
       })
       .catch(console.error);
@@ -261,11 +275,12 @@ function App() {
                     defaultClothingItems={defaultClothingItems}
                     handleAddClick={handleAddClick}
                     isLoggedIn={isLoggedIn}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
               <Route
-                path="/profile" //should this be /profile or /contexts?
+                path="/profile"
                 element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
                     <Profile
@@ -284,25 +299,21 @@ function App() {
                 }
               />
             </Routes>
-
+            {/* somehow name=currentUser.name is undefined for name */}
             <Footer />
           </div>
-          {activeModal === "add-garment" && (
-            <AddItemModal
-              //activeModal={activeModal} could use this instead of isOpen
-              handleCloseModal={closeActiveModal}
-              onAddNewItem={onAddNewItem}
-              isOpen={activeModal === "add-garment"}
-            />
-          )}
-          {activeModal === "preview" && (
-            <ItemModal
-              activeModal={activeModal}
-              card={selectedCard}
-              closeActiveModal={closeActiveModal}
-              handleDelete={handleDelete}
-            />
-          )}
+
+          <AddItemModal
+            activeModal={activeModal}
+            handleCloseModal={closeActiveModal}
+            onAddNewItem={onAddNewItem}
+          />
+          <ItemModal
+            activeModal={activeModal}
+            card={selectedCard}
+            closeActiveModal={closeActiveModal}
+            handleDeleteItem={handleDelete}
+          />
           <ItemModal
             activeModal={activeModal}
             card={selectedCard}

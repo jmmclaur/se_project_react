@@ -7,31 +7,30 @@ const RegisterModal = ({
   handleRegistration,
   handleLoginClick,
 }) => {
-  //email
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
     console.log(e.target.value);
     setEmail(e.target.value);
   };
-  //pw
+
   const [password, setPassword] = useState("");
   const handlePasswordChange = (e) => {
     console.log(e.target.value);
     setPassword(e.target.value);
   };
-  //name
+
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
     console.log(e.target.value);
     setName(e.target.value);
   };
-  //avi
+
   const [avatar, setAvatar] = useState("");
   const handleAvatarChange = (e) => {
     console.log(e.target.value);
     setAvatar(e.target.value);
   };
-  //submit
+
   const handleSubmit = (e) => {
     e.preventDefault();
     handleRegistration(email, password, name, avatar);

@@ -2,7 +2,7 @@ import "./ItemModal.css";
 
 function ItemModal({ activeModal, card, closeActiveModal, handleDelete }) {
   console.log("item modal");
-  console.log(card);
+  //console.log(card);
   const handleDeleteCard = () => {
     handleDelete(card._id);
   };

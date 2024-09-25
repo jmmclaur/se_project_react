@@ -36,10 +36,8 @@ function App() {
   const [defaultClothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
-    _id: "",
-    username: "",
-    avatar: "",
     name: "",
+    avatar: "",
   });
   const navigate = useNavigate();
 
@@ -48,6 +46,7 @@ function App() {
     setActiveModal("preview");
   };
   const handleAddClick = () => {
+    console.log("gggggggggggggggggggggggggggggg");
     setActiveModal("add-garment");
   };
   const handleRegisterClick = () => {
@@ -85,45 +84,45 @@ function App() {
     };
   }, [activeModal]);
 
-  const handleLogin = (email, password) => {
-    auth
-      .authorize(email, password)
-      .then((data) => {
-        setToken(data.token);
-        setIsLoggedIn(true);
-        return api.getUserInfo(data.token);
-      })
-      .then((user) => {
-        setCurrentUser(user);
-        closeActiveModal();
-        navigate("/profile");
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
-  /*
-  const handleSignUp = (user) => {
-    auth
-      .createUser(user)
-      .then((newUser) => {
-        setIsLoggedIn(true);
-        setCurrentUser(newUser.data);
-        handleCloseModal();
-        localStorage.setItem("jwt", newUser.token);
-      })
-      .catch(console.error);
-  }; */
-
   const handleRegistration = (email, password, name, avatar) => {
     auth
       .register(email, password, name, avatar)
-      .then(() => handleLogin(email, password))
+      .then((data) => {
+        console.log("Register API Response: ", data);
+
+        if (data.user) {
+          setCurrentUser({ name: data.user.name, avatar: data.user.avatar });
+          navigate("/profile");
+        }
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const handleLogin = (email, password) => {
+    auth
+      .login(email, password)
+      .then((data) => {
+        console.log("Login API Response: ", data);
+        //setToken(data.token);
+        //setIsLoggedIn(true);
+        //return api.getUserInfo(data.token);
+        //})
+        //.then((data) => {
+        // console.log(data);
+        if (data.user) {
+          setCurrentUser({ name: data.user.name, avatar: data.user.avatar });
+          //closeActiveModal();
+          navigate("/profile");
+        }
+      })
       .catch((error) => {
         console.error(error);
       });
   };
+
+  useEffect(() => {
+    console.log("CurrentUser State: ", currentUser);
+  }, [currentUser]);
 
   useEffect(() => {
     const jwt = getToken();
@@ -134,12 +133,10 @@ function App() {
       .getUserInfo(jwt)
       .then((res) => {
         setIsLoggedIn(true);
-        console.log(res.data);
-        setCurrentUser(res.data);
+        setCurrentUser(res);
       })
       .catch(console.error);
   }, [isLoggedIn]);
-  //check for a response then set it to the default user
 
   const handleLogOut = () => {
     removeToken();
@@ -172,30 +169,31 @@ function App() {
       .catch(console.error);
   }, []);
 
-  //maybe there is an error w onaddnewitem w values
-  //should it be listed handleAddItem? no mine is onAddNewItem
   const onAddNewItem = async (name, link, weather) => {
     const jwt = getToken();
-    try {
-      const item = await addNewItem(name, link, weather, jwt);
-      setClothingItems((prevItems) => [item.data, ...prevItems]);
-      closeActiveModal();
-    } catch (error) {
-      console.error(error);
-    }
+
+    return addNewItem(name, link, weather, jwt)
+      .then((item) => {
+        setClothingItems([item.data, ...defaultClothingItems]);
+        closeActiveModal();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const handleCardLike = ({ _id, isLiked }) => {
     const id = _id;
     const jwt = getToken();
+    console.log(_id, jwt);
     !isLiked
       ? api
           .addCardLike(id, jwt)
           .then((updatedCard) => {
-            const updatedClothingItems = defaultClothingItemsClothingItems.map(
+            const updatedDefaultClothingItems = defaultClothingItems.map(
               item._id === id ? updatedCard.data : item
             );
-            setClothingItems(updatedClothingItems);
+            setClothingItems(updatedDefaultClothingItems);
           })
           .catch((error) => {
             console.error(error);
@@ -203,10 +201,11 @@ function App() {
       : api
           .removeCardLike(id, jwt)
           .then((updatedCard) => {
-            const updatedClothingItems = defaultClothingItemsClothingItems.map(
-              item._id === id ? updatedCard.data : item
-            );
-            setClothingItems(updatedClothingItems);
+            const updatedDefaultClothingItems =
+              defaultClothingItemsClothingItems.map((item) =>
+                item._id === id ? updatedCard.data : item
+              );
+            setClothingItems(updatedDefaultClothingItems);
           })
           .catch((error) => {
             console.error(error);
@@ -237,18 +236,19 @@ function App() {
       .catch(console.error);
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = (id) => {
     const jwt = getToken();
-    try {
-      await deleteItemById(id, jwt);
-      const updatedDefaultClothingItems = defaultClothingItems.filter(
-        (item) => item._id !== id
-      );
-      setClothingItems(updatedDefaultClothingItems);
-      closeActiveModal();
-    } catch (error) {
-      console.error("Error deleting item:", error);
-    }
+    return deleteItemById(id, jwt)
+      .then(() => {
+        const updatedDefaultClothingItems = defaultClothingItems.filter(
+          (item) => item._id !== id
+        );
+        setClothingItems(updatedDefaultClothingItems);
+        closeActiveModal();
+      })
+      .catch((error) => {
+        console.error("Error deleting item:", error);
+      });
   };
 
   return (
@@ -283,18 +283,22 @@ function App() {
                 path="/profile"
                 element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
-                    <Profile
-                      handleCardClick={handleCardClick}
-                      defaultClothingItems={defaultClothingItems}
-                      handleAddClick={handleAddClick}
-                      handleEditClick={handleEditClick}
-                      handleLogOut={handleLogOut}
-                      isLoggedIn={isLoggedIn}
-                      setIsLoggedIn={setIsLoggedIn}
-                      name={currentUser.name}
-                      avatar={currentUser.avatar}
-                      onCardLike={handleCardLike}
-                    />
+                    {currentUser ? (
+                      <Profile
+                        handleCardClick={handleCardClick}
+                        defaultClothingItems={defaultClothingItems}
+                        handleAddClick={handleAddClick}
+                        handleEditClick={handleEditClick}
+                        handleLogOut={handleLogOut}
+                        isLoggedIn={isLoggedIn}
+                        setIsLoggedIn={setIsLoggedIn}
+                        name={currentUser.name}
+                        avatar={currentUser.avatar}
+                        onCardLike={handleCardLike}
+                      />
+                    ) : (
+                      <div>Loading...</div>
+                    )}
                   </ProtectedRoute>
                 }
               />

@@ -70,6 +70,7 @@ async function deleteItemById(id, token) {
 }
 
 async function addCardLike(id, token) {
+  console.log(id, token);
   const res = await fetch(`${baseUrl}/items/${id}/likes`, {
     method: "PUT",
     headers: {

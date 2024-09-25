@@ -11,7 +11,7 @@ function ClothesSection({
   onCardLike,
 }) {
   const currentUser = useContext(CurrentUserContext);
-  const userItems = defaultClothingItems.filter(
+  const userItems = defaultClothingItems?.filter(
     (item) => item.owner === currentUser?._id
   );
   return (
@@ -27,7 +27,7 @@ function ClothesSection({
         </button>
       </div>
       <ul className="clothes-section__items">
-        {userItems.map((item) => {
+        {userItems?.map((item) => {
           return (
             <ItemCard
               key={item._id || item.id}

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const AddItemModal = ({ handleCloseModal, onAddNewItem, isOpen }) => {
+const AddItemModal = ({ handleCloseModal, onAddNewItem, activeModal }) => {
   const [name, setName] = useState("");
-  const [link, setUrl] = useState("");
+  const [imageUrl, setUrl] = useState("");
   const [weather, setWeather] = useState("");
   const handleNameChange = (e) => {
     console.log(e.target.value);
@@ -20,19 +20,23 @@ const AddItemModal = ({ handleCloseModal, onAddNewItem, isOpen }) => {
     setWeather(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    onAddNewItem({ name, link, weather });
+    onAddNewItem({ name, imageUrl, weather });
+  };
+  //changed link to image url but it wasn't defined, switching back to link
+
+  const resetCurrentForm = () => {
+    resetCurrentForm({ name: "", imageUrl: "", weather: "" });
   };
 
   return (
     <ModalWithForm
       title="New Garment"
       buttonText="Add Garment"
-      isOpen={isOpen}
-      //isOpen={activeModal === "add-garment"}
+      isOpen={activeModal === "add-garment"}
       closeActiveModal={handleCloseModal}
-      onSubmit={handleSubmit}
+      onSubmit={onSubmit}
     >
       <label htmlFor="name" className="modal__label">
         Name{" "}
@@ -54,7 +58,7 @@ const AddItemModal = ({ handleCloseModal, onAddNewItem, isOpen }) => {
           className="modal__input"
           id="link"
           placeholder="Image URL"
-          value={link}
+          value={imageUrl}
           onChange={handleUrlChange}
         />
       </label>

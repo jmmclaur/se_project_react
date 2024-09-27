@@ -8,15 +8,6 @@ function checkResponse(res) {
   }
 }
 
-function getItems() {
-  return fetch(`${baseUrl}/items`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then(checkResponse);
-}
-
 const getUserInfo = (token) => {
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",
@@ -41,7 +32,19 @@ const updateUserInfo = async (name, avatar, token) => {
   return checkResponse(res);
 };
 
-async function addNewItem(name, link, weather, token) {
+function getItems() {
+  return fetch(`${baseUrl}/items`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(checkResponse);
+}
+
+async function addNewItem({ name, imageUrl, weather }, token) {
+  //const token = localStorage.getItem("jwt");
+  console.log(token);
+
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
@@ -51,11 +54,12 @@ async function addNewItem(name, link, weather, token) {
     },
     body: JSON.stringify({
       name,
-      link,
+      imageUrl,
       weather,
     }),
   }).then(checkResponse);
 }
+//moved token outside
 
 async function deleteItemById(id, token) {
   const res = await fetch(`${baseUrl}/items/${id}`, {
@@ -70,7 +74,13 @@ async function deleteItemById(id, token) {
 }
 
 async function addCardLike(id, token) {
-  console.log(id, token);
+  if (!id || !token) {
+    console.error("Invalid ID or Token");
+    return;
+  }
+  console.log(
+    `PUT Request to: ${baseUrl}/items/${id}/likes with token: ${token}`
+  );
   const res = await fetch(`${baseUrl}/items/${id}/likes`, {
     method: "PUT",
     headers: {
@@ -79,6 +89,12 @@ async function addCardLike(id, token) {
       Authorization: `Bearer ${token}`,
     },
   });
+
+  if (!res.ok) {
+    const responseText = await res.text();
+    console.error("Response Text: ", responseText);
+  }
+
   return checkResponse(res);
 }
 
@@ -93,6 +109,29 @@ async function removeCardLike(id, token) {
   });
   return checkResponse(res);
 }
+
+/*
+function addCardLike(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+}
+
+function removeCardLike(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+} */
 
 export {
   checkResponse,

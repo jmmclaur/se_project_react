@@ -36,6 +36,8 @@ function App() {
   const [defaultClothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
+    _id: "",
+    username: "",
     name: "",
     avatar: "",
   });
@@ -47,7 +49,8 @@ function App() {
   };
   const handleAddClick = () => {
     console.log("gggggggggggggggggggggggggggggg");
-    setActiveModal("add-garment");
+    setActiveModal("add-garment"); //something is wrong here
+    console.log("bruhhhhh");
   };
   const handleRegisterClick = () => {
     setActiveModal("sign-up");
@@ -100,18 +103,18 @@ function App() {
 
   const handleLogin = (email, password) => {
     auth
-      .login(email, password)
+      .authorize(email, password)
       .then((data) => {
         console.log("Login API Response: ", data);
-        //setToken(data.token);
-        //setIsLoggedIn(true);
-        //return api.getUserInfo(data.token);
-        //})
-        //.then((data) => {
-        // console.log(data);
+        setToken(data.token);
+        setIsLoggedIn(true);
+        return api.getUserInfo(data.token);
+      })
+      .then((data) => {
+        console.log(data);
         if (data.user) {
           setCurrentUser({ name: data.user.name, avatar: data.user.avatar });
-          //closeActiveModal();
+          closeActiveModal();
           navigate("/profile");
         }
       })
@@ -152,14 +155,15 @@ function App() {
     }
     api
       .updateUserInfo(name, avatar, jwt)
-      .then((res) => {
-        setCurrentUser(res.data);
+      .then((data) => {
+        setCurrentUser(data);
         closeActiveModal();
       })
       .catch((error) => {
         console.error(error);
       });
   };
+  // changed res.data to data
 
   useEffect(() => {
     getItems()
@@ -169,12 +173,12 @@ function App() {
       .catch(console.error);
   }, []);
 
-  const onAddNewItem = async (name, link, weather) => {
+  const onAddNewItem = async ({ name, imageUrl, weather }) => {
     const jwt = getToken();
-
-    return addNewItem(name, link, weather, jwt)
+    return addNewItem({ name, imageUrl, weather }, jwt)
       .then((item) => {
         setClothingItems([item.data, ...defaultClothingItems]);
+        resetCurrentForm();
         closeActiveModal();
       })
       .catch((error) => {
@@ -185,13 +189,12 @@ function App() {
   const handleCardLike = ({ _id, isLiked }) => {
     const id = _id;
     const jwt = getToken();
-    console.log(_id, jwt);
     !isLiked
       ? api
           .addCardLike(id, jwt)
           .then((updatedCard) => {
             const updatedDefaultClothingItems = defaultClothingItems.map(
-              item._id === id ? updatedCard.data : item
+              (item) => (item._id === id ? updatedCard.data : item)
             );
             setClothingItems(updatedDefaultClothingItems);
           })
@@ -303,20 +306,15 @@ function App() {
                 }
               />
             </Routes>
-            {/* somehow name=currentUser.name is undefined for name */}
+
             <Footer />
           </div>
 
           <AddItemModal
+            onClick={handleAddClick}
             activeModal={activeModal}
             handleCloseModal={closeActiveModal}
             onAddNewItem={onAddNewItem}
-          />
-          <ItemModal
-            activeModal={activeModal}
-            card={selectedCard}
-            closeActiveModal={closeActiveModal}
-            handleDeleteItem={handleDelete}
           />
           <ItemModal
             activeModal={activeModal}

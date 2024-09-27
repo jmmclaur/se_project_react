@@ -24,7 +24,6 @@ const AddItemModal = ({ handleCloseModal, onAddNewItem, activeModal }) => {
     e.preventDefault();
     onAddNewItem({ name, imageUrl, weather });
   };
-  //changed link to image url but it wasn't defined, switching back to link
 
   const resetCurrentForm = () => {
     resetCurrentForm({ name: "", imageUrl: "", weather: "" });

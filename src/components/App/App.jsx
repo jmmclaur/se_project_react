@@ -173,9 +173,9 @@ function App() {
       .catch(console.error);
   }, []);
 
-  const onAddNewItem = async ({ name, imageUrl, weather }) => {
+  const onAddNewItem = async (name, imageUrl, weather) => {
     const jwt = getToken();
-    return addNewItem({ name, imageUrl, weather }, jwt)
+    return addNewItem(name, imageUrl, weather, jwt)
       .then((item) => {
         setClothingItems([item.data, ...defaultClothingItems]);
         resetCurrentForm();

@@ -41,25 +41,22 @@ function getItems() {
   }).then(checkResponse);
 }
 
-async function addNewItem({ name, imageUrl, weather }, token) {
-  //const token = localStorage.getItem("jwt");
-  console.log(token);
-
+async function addNewItem(name, imageUrl, weather, token) {
+  //receive the 4 values
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-type": "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`, //use token for authorization
     },
     body: JSON.stringify({
       name,
       imageUrl,
       weather,
     }),
-  }).then(checkResponse);
+  }).then(checkResponse); //ensure response is properly checked
 }
-//moved token outside
 
 async function deleteItemById(id, token) {
   const res = await fetch(`${baseUrl}/items/${id}`, {
@@ -73,6 +70,28 @@ async function deleteItemById(id, token) {
   return checkResponse(res);
 }
 
+function addCardLike(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+}
+
+function removeCardLike(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+}
+/*
 async function addCardLike(id, token) {
   if (!id || !token) {
     console.error("Invalid ID or Token");
@@ -108,29 +127,6 @@ async function removeCardLike(id, token) {
     },
   });
   return checkResponse(res);
-}
-
-/*
-function addCardLike(id, token) {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
-    method: "PUT",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  }).then(checkResponse);
-}
-
-function removeCardLike(id, token) {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
-    method: "DELETE",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  }).then(checkResponse);
 } */
 
 export {

@@ -173,13 +173,14 @@ function App() {
       .catch(console.error);
   }, []);
 
-  const onAddNewItem = async (name, imageUrl, weather) => {
-    const jwt = getToken();
-    return addNewItem(name, imageUrl, weather, jwt)
+  const onAddNewItem = async ({ name, imageUrl, weather }) => {
+    //destructure the object to get the values
+    const jwt = getToken(); //retrieve the token
+    return addNewItem(name, imageUrl, weather, jwt) //pass all 4 values
       .then((item) => {
-        setClothingItems([item.data, ...defaultClothingItems]);
-        resetCurrentForm();
-        closeActiveModal();
+        setClothingItems([item.data, ...defaultClothingItems]); //update clothing items
+        //resetForm(); //reset
+        closeActiveModal(); //close
       })
       .catch((error) => {
         console.error(error);
@@ -233,25 +234,24 @@ function App() {
 
   useEffect(() => {
     getItems()
-      .then(({ data }) => {
+      .then((data) => {
         setClothingItems(data);
       })
       .catch(console.error);
   }, []);
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     const jwt = getToken();
-    return deleteItemById(id, jwt)
-      .then(() => {
-        const updatedDefaultClothingItems = defaultClothingItems.filter(
-          (item) => item._id !== id
-        );
-        setClothingItems(updatedDefaultClothingItems);
-        closeActiveModal();
-      })
-      .catch((error) => {
-        console.error("Error deleting item:", error);
-      });
+    try {
+      await deleteItemById(id, jwt);
+      const updatedDefaultClothingItems = defaultClothingItems.filter(
+        (item) => item._id !== id
+      );
+      setClothingItems(updatedDefaultClothingItems);
+      closeActiveModal();
+    } catch (error) {
+      console.error("Error deleting item:", error);
+    }
   };
 
   return (

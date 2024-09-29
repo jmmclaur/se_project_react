@@ -25,7 +25,7 @@ const AddItemModal = ({ handleCloseModal, onAddNewItem, activeModal }) => {
     onAddNewItem({ name, imageUrl, weather });
   };
 
-  const resetCurrentForm = () => {
+  const resetForm = () => {
     resetForm({ name: "", imageUrl: "", weather: "" });
   };
 

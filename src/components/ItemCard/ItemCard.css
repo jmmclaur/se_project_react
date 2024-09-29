@@ -39,7 +39,7 @@
   width: 18px;
   height: 15px;
   border-style: none;
-  margin: 0;
+  margin: 0 15px 0 0;
   transition: 0.3s linear;
   cursor: pointer;
 }

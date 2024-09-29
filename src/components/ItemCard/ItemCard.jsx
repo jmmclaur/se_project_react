@@ -6,10 +6,9 @@ import "./ItemCard.css";
 
 function ItemCard({ item, onCardLike, onCardClick }) {
   const currentUser = useContext(CurrentUserContext);
-  const cardId = item._id;
-
+  const card = item;
   const isLiked =
-    cardId.isLiked && item.likes.some((id) => id === currentUser._id);
+    card.isLiked && item.likes.some((id) => id === currentUser._id);
 
   const handleCardClick = () => {
     onCardClick(item);
@@ -35,11 +34,13 @@ function ItemCard({ item, onCardLike, onCardClick }) {
       <img
         onClick={handleCardClick}
         className="card__image"
-        src={item.link}
-        alt={item.name}
+        src={item?.imageUrl}
+        alt={item?.name}
       />
     </li>
   );
 }
 
+//item.link makes the default cards show but nothing in the logged in one
+//item.imageUrl breaks the default cards but the user items show
 export default ItemCard;

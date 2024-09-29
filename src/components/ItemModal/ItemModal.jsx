@@ -3,31 +3,33 @@ import "./ItemModal.css";
 import { useContext } from "react";
 
 function ItemModal({ activeModal, card, closeActiveModal, handleDeleteItem }) {
-  console.log("item modal");
-
   const handleDeleteClick = () => {
     handleDeleteItem(card._id);
   };
+  const currentUser = useContext(CurrentUserContext);
+  const isOwn = card.owner === currentUser._id;
+
   return (
     <div className={`modal ${activeModal === "preview" && "modal_opened"}`}>
       <div className="modal__content modal__content_type_image">
         <button onClick={closeActiveModal} className="modal__close"></button>
         <img
-          src={String(card?.link)}
+          src={String(card?.imageUrl)}
           alt={card.name}
           className="modal__image"
         />
         <div className="modal__footer">
           <h2 className="modal__caption">{card.name}</h2>
           <p className="modal__weather">Weather: {card.weather}</p>
-          <button
-            type="button"
-            className="modal__delete-btn"
-            //onClick={() => handleDelete(card?._id)}
-            onClick={handleDeleteClick}
-          >
-            Delete Item
-          </button>
+          {isOwn && (
+            <button
+              type="button"
+              className="modal__delete-btn"
+              onClick={handleDeleteClick}
+            >
+              Delete Item
+            </button>
+          )}
         </div>
       </div>
     </div>
@@ -35,8 +37,3 @@ function ItemModal({ activeModal, card, closeActiveModal, handleDeleteItem }) {
 }
 
 export default ItemModal;
-//try onClose instead of onClick, nope onclick actually closes it
-
-//modal__close is still showing gray instead of white, is visibility hidden?
-
-//change link to imageUrl?

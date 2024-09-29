@@ -14,6 +14,7 @@ function ClothesSection({
   const userItems = defaultClothingItems?.filter(
     (item) => item.owner === currentUser?._id
   );
+  //are the default items breaking here?
   return (
     <div className="clothes-section">
       <div className="clothes-section__buttons">
@@ -26,19 +27,21 @@ function ClothesSection({
           + Add New
         </button>
       </div>
-      <ul className="clothes-section__items">
-        {userItems?.map((item) => {
-          return (
-            <ItemCard
-              key={item._id || item.id}
-              item={item}
-              onCardClick={handleCardClick}
-              onCardLike={onCardLike}
-              isLoggedIn={isLoggedIn}
-            />
-          );
-        })}
-      </ul>
+      <div className="break">
+        <ul className="clothes-section__items">
+          {userItems?.map((item) => {
+            return (
+              <ItemCard
+                key={item._id || item.id}
+                item={item}
+                onCardClick={handleCardClick}
+                onCardLike={onCardLike}
+                isLoggedIn={isLoggedIn}
+              />
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 }

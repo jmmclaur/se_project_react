@@ -21,31 +21,23 @@ const Profile = ({
   }
 
   return (
-    <div>
-      <h1>Welcome, {name || "User"}</h1>
-      {avatar ? (
-        <img src={avatar} alt="User Avatar" />
-      ) : (
-        <div>No Avatar Available</div>
-      )}
-      <div className="profile">
-        <section className="profile__sidebar">
-          <SideBar
-            handleEditClick={handleEditClick}
-            setIsLoggedIn={setIsLoggedIn}
-            handleLogOut={handleLogOut}
-          />
-        </section>
-        <section className="profile__clothing-item">
-          <ClothesSection
-            handleCardClick={handleCardClick}
-            handleAddClick={handleAddClick}
-            defaultClothingItems={defaultClothingItems}
-            isLoggedIn={isLoggedIn}
-            onCardLike={onCardLike}
-          />
-        </section>
-      </div>
+    <div className="profile">
+      <section className="profile__sidebar">
+        <SideBar
+          handleEditClick={handleEditClick}
+          setIsLoggedIn={setIsLoggedIn}
+          handleLogOut={handleLogOut}
+        />
+      </section>
+      <section className="profile__clothing-item">
+        <ClothesSection
+          handleCardClick={handleCardClick}
+          handleAddClick={handleAddClick}
+          defaultClothingItems={defaultClothingItems}
+          isLoggedIn={isLoggedIn}
+          onCardLike={onCardLike}
+        />
+      </section>
     </div>
   );
 };

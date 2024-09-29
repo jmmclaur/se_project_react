@@ -48,9 +48,7 @@ function App() {
     setActiveModal("preview");
   };
   const handleAddClick = () => {
-    console.log("gggggggggggggggggggggggggggggg");
-    setActiveModal("add-garment"); //something is wrong here
-    console.log("bruhhhhh");
+    setActiveModal("add-garment");
   };
   const handleRegisterClick = () => {
     setActiveModal("sign-up");
@@ -179,7 +177,7 @@ function App() {
     return addNewItem(name, imageUrl, weather, jwt) //pass all 4 values
       .then((item) => {
         setClothingItems([item.data, ...defaultClothingItems]); //update clothing items
-        //resetForm(); //reset
+        resetForm(); //reset
         closeActiveModal(); //close
       })
       .catch((error) => {
@@ -194,11 +192,11 @@ function App() {
       ? api
           .addCardLike(id, jwt)
           .then((updatedCard) => {
-            const updatedDefaultClothingItems = defaultClothingItems.map(
+            const updatedDefaultClothingItems = defaultClothingItems?.map(
               (item) => (item._id === id ? updatedCard.data : item)
             );
             setClothingItems(updatedDefaultClothingItems);
-          })
+          }) //is the default clothing breaking here?
           .catch((error) => {
             console.error(error);
           })
@@ -306,7 +304,6 @@ function App() {
                 }
               />
             </Routes>
-
             <Footer />
           </div>
 

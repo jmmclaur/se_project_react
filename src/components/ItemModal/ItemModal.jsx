@@ -13,11 +13,15 @@ function ItemModal({ activeModal, card, closeActiveModal, handleDeleteItem }) {
     <div className={`modal ${activeModal === "preview" && "modal_opened"}`}>
       <div className="modal__content modal__content_type_image">
         <button onClick={closeActiveModal} className="modal__close"></button>
-        <img
-          src={String(card?.imageUrl)}
-          alt={card.name}
-          className="modal__image"
-        />
+        {card ? (
+          <img
+            src={String(card?.imageUrl)}
+            alt={card.name}
+            className="modal__image"
+          />
+        ) : (
+          <p>No image available</p>
+        )}
         <div className="modal__footer">
           <h2 className="modal__caption">{card.name}</h2>
           <p className="modal__weather">Weather: {card.weather}</p>

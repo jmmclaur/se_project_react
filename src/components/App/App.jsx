@@ -171,6 +171,13 @@ function App() {
       .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    console.log(
+      "defaultClothingItems in Main component:",
+      defaultClothingItems
+    );
+  }, [defaultClothingItems]);
+
   const onAddNewItem = async ({ name, imageUrl, weather }) => {
     //destructure the object to get the values
     const jwt = getToken(); //retrieve the token
@@ -203,10 +210,9 @@ function App() {
       : api
           .removeCardLike(id, jwt)
           .then((updatedCard) => {
-            const updatedDefaultClothingItems =
-              defaultClothingItemsClothingItems.map((item) =>
-                item._id === id ? updatedCard.data : item
-              );
+            const updatedDefaultClothingItems = defaultClothingItems.map(
+              (item) => (item._id === id ? updatedCard.data : item)
+            );
             setClothingItems(updatedDefaultClothingItems);
           })
           .catch((error) => {

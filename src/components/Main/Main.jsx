@@ -8,6 +8,15 @@ import { defaultClothingItems } from "../../utils/constants.js";
 
 function Main({ weatherData, handleCardClick, onCardLike }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+
+  /*
+useEffect(() => {
+  console.log(
+    "Received defaultClothingItems in Main component:",
+    defaultClothingItems
+  );
+}, [defaultClothingItems]); */
+
   return (
     <main>
       <WeatherCard weatherData={weatherData} />

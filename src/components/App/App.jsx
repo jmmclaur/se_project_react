@@ -111,7 +111,12 @@ function App() {
       .then((data) => {
         console.log(data);
         if (data.user) {
-          setCurrentUser({ name: data.user.name, avatar: data.user.avatar });
+          //setCurrentUser({ name: data.user.name, avatar: data.user.avatar });
+          setCurrentUser({
+            name: data.user.name,
+            avatar: data.user.avatar,
+            _id: data.user._id,
+          });
           closeActiveModal();
           navigate("/profile");
         }
@@ -171,6 +176,7 @@ function App() {
       .catch(console.error);
   }, []);
 
+  //this is new, if removed you get a 400 error
   useEffect(() => {
     console.log(
       "defaultClothingItems in Main component:",
@@ -184,7 +190,7 @@ function App() {
     return addNewItem(name, imageUrl, weather, jwt) //pass all 4 values
       .then((item) => {
         setClothingItems([item.data, ...defaultClothingItems]); //update clothing items
-        resetForm(); //reset
+        //resetForm(); //reset
         closeActiveModal(); //close
       })
       .catch((error) => {
@@ -193,23 +199,27 @@ function App() {
   };
 
   const handleCardLike = ({ _id, isLiked }) => {
+    console.log("Hererererererererere");
+    console.log(isLiked);
     const id = _id;
     const jwt = getToken();
     !isLiked
       ? api
           .addCardLike(id, jwt)
           .then((updatedCard) => {
+            console.log("hit");
             const updatedDefaultClothingItems = defaultClothingItems?.map(
               (item) => (item._id === id ? updatedCard.data : item)
             );
             setClothingItems(updatedDefaultClothingItems);
-          }) //is the default clothing breaking here?
+          })
           .catch((error) => {
             console.error(error);
           })
       : api
           .removeCardLike(id, jwt)
           .then((updatedCard) => {
+            console.log("hit2");
             const updatedDefaultClothingItems = defaultClothingItems.map(
               (item) => (item._id === id ? updatedCard.data : item)
             );

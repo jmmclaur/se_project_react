@@ -6,7 +6,12 @@ import { CurrentTemperatureUnitContext } from "../../utils/contexts/CurrentTempe
 import { useContext } from "react";
 import { defaultClothingItems } from "../../utils/constants.js";
 
-function Main({ weatherData, handleCardClick, onCardLike }) {
+function Main({
+  weatherData,
+  handleCardClick,
+  onCardLike,
+  //defaultClothingItems,
+}) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
   /*
@@ -48,4 +53,5 @@ useEffect(() => {
   );
 }
 
+//adding a key above the return made the default clothing items disappear, why though?
 export default Main;

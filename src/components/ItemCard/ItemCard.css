@@ -1,5 +1,5 @@
 .card {
-  width: 323px;
+  width: 300px;
   position: relative;
   justify-content: center;
   position: relative;
@@ -7,6 +7,7 @@
   border-radius: 16px;
   border: 1px solid #0000004d;
   padding: 0;
+  gap: 20px;
 }
 
 .card__name {
@@ -30,7 +31,8 @@
 
 .card__image {
   width: 100%;
-  border-radius: 16px;
+  height: 330px;
+  border-radius: 14px;
   object-fit: cover;
 }
 

@@ -40,7 +40,7 @@ const LoginModal = ({
         <input
           type="email"
           className="modal__input"
-          id="email"
+          id="user_email"
           placeholder="Email"
           required
           value={email}
@@ -52,7 +52,7 @@ const LoginModal = ({
         <input
           type="password"
           className="modal__input"
-          id="password"
+          id="user_password"
           placeholder="Password"
           minLength="6"
           required

@@ -42,7 +42,7 @@ const AddItemModal = ({ handleCloseModal, onAddNewItem, activeModal }) => {
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="user_name"
           placeholder="Name"
           minLength="1"
           maxLength="30"

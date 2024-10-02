@@ -6,8 +6,7 @@ import "./ItemCard.css";
 
 function ItemCard({ item, onCardLike, onCardClick }) {
   const currentUser = useContext(CurrentUserContext); //wrapping currentUser in {} made the like button disappear?
-
-  const isLiked = item.likes?.some((id) => id === currentUser._id);
+  const isLiked = item.likes?.some((id) => id === currentUser?._id);
   console.log(isLiked);
   const handleCardClick = () => {
     onCardClick(item);
@@ -40,6 +39,4 @@ function ItemCard({ item, onCardLike, onCardClick }) {
   );
 }
 
-//item.link makes the default cards show but nothing in the logged in one
-//item.imageUrl breaks the default cards but the user items show
 export default ItemCard;

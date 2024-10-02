@@ -37,6 +37,7 @@ sidebar__info {
   padding: 0;
   cursor: pointer;
   background-color: transparent;
+  display: flex;
   flex-direction: column;
 }
 
@@ -48,5 +49,6 @@ sidebar__info {
   padding: 8px 0;
   cursor: pointer;
   background-color: transparent;
+  display: flex;
   flex-direction: column;
 }

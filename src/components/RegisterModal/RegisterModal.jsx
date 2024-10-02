@@ -6,6 +6,7 @@ const RegisterModal = ({
   activeModal,
   handleRegistration,
   handleLoginClick,
+  onClose,
 }) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
@@ -41,7 +42,7 @@ const RegisterModal = ({
       title="Sign Up"
       buttonText="Sign Up"
       isOpen={activeModal === "sign-up"}
-      onClose={closeActiveModal}
+      onClose={onClose}
       onSubmit={handleSubmit}
       showLink={true}
       linkText="or Log In"

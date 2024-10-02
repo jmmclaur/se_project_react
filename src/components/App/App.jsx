@@ -96,6 +96,10 @@ function App() {
           navigate("/profile");
         }
       })
+      .then(() => {
+        closeActiveModal();
+        //handleCloseModal();
+      })
       .catch((error) => console.error(error));
   };
 
@@ -106,18 +110,19 @@ function App() {
         console.log("Login API Response: ", data);
         setToken(data.token);
         setIsLoggedIn(true);
+        //localStorage.setItem("jwt", data.token);
         return api.getUserInfo(data.token);
       })
       .then((data) => {
         console.log(data);
         if (data.user) {
-          //setCurrentUser({ name: data.user.name, avatar: data.user.avatar });
           setCurrentUser({
             name: data.user.name,
             avatar: data.user.avatar,
             _id: data.user._id,
           });
           closeActiveModal();
+          //handleCloseModal();
           navigate("/profile");
         }
       })
@@ -189,7 +194,7 @@ function App() {
     const jwt = getToken(); //retrieve the token
     return addNewItem(name, imageUrl, weather, jwt) //pass all 4 values
       .then((item) => {
-        setClothingItems([item.data, ...defaultClothingItems]); //update clothing items
+        setClothingItems([item, ...defaultClothingItems]); //update clothing items
         //resetForm(); //reset
         closeActiveModal(); //close
       })
@@ -199,15 +204,14 @@ function App() {
   };
 
   const handleCardLike = ({ _id, isLiked }) => {
-    console.log("Hererererererererere");
     console.log(isLiked);
     const id = _id;
     const jwt = getToken();
+
     !isLiked
       ? api
           .addCardLike(id, jwt)
           .then((updatedCard) => {
-            console.log("hit");
             const updatedDefaultClothingItems = defaultClothingItems?.map(
               (item) => (item._id === id ? updatedCard.data : item)
             );
@@ -219,7 +223,6 @@ function App() {
       : api
           .removeCardLike(id, jwt)
           .then((updatedCard) => {
-            console.log("hit2");
             const updatedDefaultClothingItems = defaultClothingItems.map(
               (item) => (item._id === id ? updatedCard.data : item)
             );
@@ -328,22 +331,24 @@ function App() {
             activeModal={activeModal}
             handleCloseModal={closeActiveModal}
             onAddNewItem={onAddNewItem}
+            onClose={closeActiveModal}
           />
           <ItemModal
             activeModal={activeModal}
             card={selectedCard}
             closeActiveModal={closeActiveModal}
             handleDeleteItem={handleDelete}
+            handleCloseModal={closeActiveModal}
           />
           <RegisterModal
             activeModal={activeModal}
-            closeActiveModal={closeActiveModal}
+            onClose={closeActiveModal}
             handleRegistration={handleRegistration}
             handleLoginClick={handleLoginClick}
           />
           <LoginModal
             activeModal={activeModal}
-            closeActiveModal={closeActiveModal}
+            onClose={closeActiveModal}
             handleLogin={handleLogin}
             handleRegisterClick={handleRegisterClick}
           />

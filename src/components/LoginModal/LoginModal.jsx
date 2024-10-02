@@ -6,6 +6,7 @@ const LoginModal = ({
   activeModal,
   handleLogin,
   handleRegisterClick,
+  onClose,
 }) => {
   //email
   const [email, setEmail] = useState("");
@@ -29,7 +30,7 @@ const LoginModal = ({
       title="Log In"
       buttonText="Log In"
       isOpen={activeModal === "log-in"}
-      onClose={closeActiveModal}
+      onClose={onClose}
       onSubmit={handleSubmit}
       linkText="or Sign Up"
       onLinkClick={handleRegisterClick}

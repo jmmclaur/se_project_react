@@ -229,21 +229,16 @@ function App() {
     fetchCurrentUser();
   }, []); */
 
-  const handleCardLike = ({ _id, isLiked, currentUser }) => {
+  const handleCardLike = ({ _id, isLiked }) => {
     console.log(isLiked);
     const id = _id;
     const jwt = getToken();
-    console.log(id, jwt);
-    console.log("ID:", id); // Add this line
-    console.log("JWT:", jwt); // Add this line
-    if (!currentUser) {
-      console.error("currentUser is undefined");
-      return;
-    }
+    //console.log(id, jwt);
+    //console.log("ID:", id); // Add this line
 
     !isLiked
       ? api
-          .addCardLike(id, jwt, currentUser._id)
+          .addCardLike(id, jwt)
           .then((updatedCard) => {
             const updatedDefaultClothingItems = defaultClothingItems?.map(
               (item) => (item._id === id ? updatedCard.data : item)

@@ -4,23 +4,14 @@ import ItemCard from "../ItemCard/ItemCard.jsx";
 import "./Main.css";
 import { CurrentTemperatureUnitContext } from "../../utils/contexts/CurrentTemperatureUnitContext";
 import { useContext } from "react";
-import { defaultClothingItems } from "../../utils/constants.js";
 
 function Main({
   weatherData,
   handleCardClick,
   onCardLike,
-  //defaultClothingItems,
+  updatedDefaultClothingItems,
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
-
-  /*
-useEffect(() => {
-  console.log(
-    "Received defaultClothingItems in Main component:",
-    defaultClothingItems
-  );
-}, [defaultClothingItems]); */
 
   return (
     <main>
@@ -33,8 +24,8 @@ useEffect(() => {
         </p>
 
         <ul className="cards__list">
-          {defaultClothingItems
-            .filter((item) => {
+          {updatedDefaultClothingItems
+            ?.filter((item) => {
               return item.weather === weatherData.type;
             })
             .map((item) => {

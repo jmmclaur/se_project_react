@@ -111,7 +111,7 @@ function App() {
         console.log("Login API Response: ", data);
         setToken(data.token);
         setIsLoggedIn(true);
-        //localStorage.setItem("jwt", data.token);
+        localStorage.setItem("jwt", data.token);
         return api.getUserInfo(data.token);
       })
       .then((data) => {
@@ -121,6 +121,7 @@ function App() {
             name: data.user.name,
             avatar: data.user.avatar,
             _id: data.user._id,
+            //is the default card being affect here at all?
           });
           closeActiveModal();
           //handleCloseModal();
@@ -172,7 +173,6 @@ function App() {
         console.error(error);
       });
   };
-  // changed res.data to data
 
   useEffect(() => {
     getItems()
@@ -182,20 +182,20 @@ function App() {
       .catch(console.error);
   }, []);
 
-  //this is new, if removed you get a 400 error
+  /*
   useEffect(() => {
     console.log(
       "defaultClothingItems in Main component:",
       defaultClothingItems
     );
-  }, [defaultClothingItems]);
+  }, [defaultClothingItems]); */
 
   const onAddNewItem = async ({ name, imageUrl, weather }) => {
     //destructure the object to get the values
     const jwt = getToken(); //retrieve the token
     return addNewItem(name, imageUrl, weather, jwt) //pass all 4 values
       .then((item) => {
-        setClothingItems([item, ...defaultClothingItems]); //update clothing items
+        setClothingItems([item.data, ...defaultClothingItems]); //update clothing items
         //resetForm(); //reset
         closeActiveModal(); //close
       })
@@ -236,6 +236,30 @@ function App() {
     //console.log(id, jwt);
     //console.log("ID:", id); // Add this line
 
+    const token = localStorage.getItem("jwt");
+
+    /*
+    if (!isLiked) {
+      api
+        .addCardLike(id, jwt, token)
+        .then((updatedCard) => {
+          setClothingItems((card) =>
+            card.map((item) => (item._id === id ? updatedCard.data : item))
+          );
+        })
+        .catch((err) => console.log(err));
+    } else {
+      api
+        .removeCardLike(id, jwt, token)
+        .then((updatedCard) => {
+          setClothingItems((card) =>
+            card.map((item) => (item._id === id ? updatedCard.data : item))
+          );
+        })
+        .catch((err) => console.log(err));
+    }
+  };*/
+    //original
     !isLiked
       ? api
           .addCardLike(id, jwt)
@@ -260,6 +284,8 @@ function App() {
             console.error(error);
           });
   };
+
+  //const isLiked = item.likes.some(id => id === currentUser._id);
 
   const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"
@@ -320,7 +346,7 @@ function App() {
                   <Main
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
-                    defaultClothingItems={defaultClothingItems}
+                    updatedDefaultClothingItems={defaultClothingItems}
                     handleAddClick={handleAddClick}
                     isLoggedIn={isLoggedIn}
                     onCardLike={handleCardLike}

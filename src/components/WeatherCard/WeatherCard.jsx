@@ -17,12 +17,8 @@ function WeatherCard({ weatherData }) {
       ? defaultWeatherOptions.day.url
       : defaultWeatherOptions.night.url);
 
-  console.log(weatherData.isDay);
-  console.log(weatherData.condition);
-
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
-  console.log(currentTemperatureUnit);
-  const temp = weatherData?.temp?.[currentTemperatureUnit] || 999;
+  // const temp = weatherData?.temp?.[currentTemperatureUnit] || 999;
 
   return (
     <section className="weather-card">

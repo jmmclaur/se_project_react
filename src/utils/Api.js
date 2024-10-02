@@ -32,13 +32,14 @@ const updateUserInfo = async (name, avatar, token) => {
   return checkResponse(res);
 };
 
-function getItems() {
-  return fetch(`${baseUrl}/items`, {
+async function getItems() {
+  const res = await fetch(`${baseUrl}/items`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
-  }).then(checkResponse);
+  });
+  return checkResponse(res);
 }
 
 async function addNewItem(name, imageUrl, weather, token) {
@@ -78,9 +79,6 @@ async function addCardLike(_id, token) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    /*body: JSON.stringify({
-      userId: currentUser._id, // or any other data needed
-    }), */
   });
   return checkResponse(res);
 }
@@ -96,21 +94,6 @@ async function removeCardLike(_id, token) {
   });
   return checkResponse(res);
 }
-
-/*
-export const getCurrentUser = async (token) => {
-  // Make sure this function is implemented
-  const res = await fetch(`${baseUrl}/users/me`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  if (!res.ok) {
-    throw new Error(`Error: ${res.status}`);
-  }
-  return res.json();
-}; */
 
 export {
   checkResponse,

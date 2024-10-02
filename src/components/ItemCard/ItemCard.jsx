@@ -6,19 +6,13 @@ import "./ItemCard.css";
 
 function ItemCard({ item, onCardLike, onCardClick }) {
   const currentUser = useContext(CurrentUserContext); //wrapping currentUser in {} made the like button disappear?
-  /*new
-  if (!currentUser) {
-    return null;
-  } */
+
   const isLiked = item.likes?.some((id) => id === currentUser?._id);
-  //console.log(isLiked);
   const handleCardClick = () => {
     onCardClick(item);
   };
 
   const handleLikeClick = () => {
-    //console.log("Item ID:", item._id); // Add this line
-    //console.log("Current User ID:", currentUser?._id); // Add this line
     onCardLike({ _id: item._id, isLiked });
   };
 

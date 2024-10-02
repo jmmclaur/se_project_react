@@ -23,7 +23,6 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import EditPofileModal from "../EditProfileModal/EditProfileModal";
 import { CurrentUserContext } from "../../utils/contexts/CurrentUserContext";
-//import { getCurrentUser } from "./utils/api"; //new
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -99,7 +98,6 @@ function App() {
       })
       .then(() => {
         closeActiveModal();
-        //handleCloseModal();
       })
       .catch((error) => console.error(error));
   };
@@ -121,10 +119,8 @@ function App() {
             name: data.user.name,
             avatar: data.user.avatar,
             _id: data.user._id,
-            //is the default card being affect here at all?
           });
           closeActiveModal();
-          //handleCloseModal();
           navigate("/profile");
         }
       })
@@ -182,21 +178,13 @@ function App() {
       .catch(console.error);
   }, []);
 
-  /*
-  useEffect(() => {
-    console.log(
-      "defaultClothingItems in Main component:",
-      defaultClothingItems
-    );
-  }, [defaultClothingItems]); */
-
   const onAddNewItem = async ({ name, imageUrl, weather }) => {
     //destructure the object to get the values
     const jwt = getToken(); //retrieve the token
     return addNewItem(name, imageUrl, weather, jwt) //pass all 4 values
       .then((item) => {
         setClothingItems([item.data, ...defaultClothingItems]); //update clothing items
-        //resetForm(); //reset
+        //resetForm(); //reset, if I want to add this I need to define the form still
         closeActiveModal(); //close
       })
       .catch((error) => {
@@ -204,61 +192,13 @@ function App() {
       });
   };
 
-  /*new below
-  useEffect(() => {
-    // Fetch and set currentUser
-    const fetchCurrentUser = async () => {
-      const user = await api.getCurrentUser();
-      setCurrentUser(user);
-    };
-    fetchCurrentUser();
-  }, []); */
-
-  /*new
-  useEffect(() => {
-    const fetchCurrentUser = async () => {
-      try {
-        const jwt = getToken();
-        if (!jwt) throw new Error("No JWT found");
-        const user = await getCurrentUser(jwt);
-        setCurrentUser(user);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchCurrentUser();
-  }, []); */
-
   const handleCardLike = ({ _id, isLiked }) => {
     console.log(isLiked);
     const id = _id;
     const jwt = getToken();
-    //console.log(id, jwt);
-    //console.log("ID:", id); // Add this line
+    //console.log(id, jwt); testing to see if id and jwt are returning anything
+    //console.log("ID:", id); test to see if id is passing correctly
 
-    const token = localStorage.getItem("jwt");
-
-    /*
-    if (!isLiked) {
-      api
-        .addCardLike(id, jwt, token)
-        .then((updatedCard) => {
-          setClothingItems((card) =>
-            card.map((item) => (item._id === id ? updatedCard.data : item))
-          );
-        })
-        .catch((err) => console.log(err));
-    } else {
-      api
-        .removeCardLike(id, jwt, token)
-        .then((updatedCard) => {
-          setClothingItems((card) =>
-            card.map((item) => (item._id === id ? updatedCard.data : item))
-          );
-        })
-        .catch((err) => console.log(err));
-    }
-  };*/
     //original
     !isLiked
       ? api
@@ -284,8 +224,6 @@ function App() {
             console.error(error);
           });
   };
-
-  //const isLiked = item.likes.some(id => id === currentUser._id);
 
   const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"

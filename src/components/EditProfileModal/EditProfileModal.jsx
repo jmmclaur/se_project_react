@@ -11,13 +11,11 @@ const EditPofileModal = ({
 
   const [name, setName] = useState(currentUser?.name || "");
   const handleNameChange = (e) => {
-    console.log(e.target.value);
     setName(e.target.value);
   };
 
   const [avatar, setAvatar] = useState(currentUser?.avatar || "");
   const handleAvatarChange = (e) => {
-    console.log(e.target.value);
     setAvatar(e.target.value);
   };
 

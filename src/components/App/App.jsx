@@ -113,20 +113,19 @@ function App() {
         return api.getUserInfo(data.token);
       })
       .then((data) => {
-        console.log(data);
-        if (data.user) {
+        if (data != null) {
           setCurrentUser({
-            name: data.user.name,
-            avatar: data.user.avatar,
-            _id: data.user._id,
+            name: data.name,
+            avatar: data.avatar,
+            _id: data._id,
           });
           closeActiveModal();
           navigate("/profile");
+        } else {
+          console.log("Unauthorized request");
         }
       })
-      .catch((error) => {
-        console.error(error);
-      });
+      .catch(console.error);
   };
 
   useEffect(() => {
@@ -196,10 +195,7 @@ function App() {
     console.log(isLiked);
     const id = _id;
     const jwt = getToken();
-    //console.log(id, jwt); testing to see if id and jwt are returning anything
-    //console.log("ID:", id); test to see if id is passing correctly
 
-    //original
     !isLiked
       ? api
           .addCardLike(id, jwt)

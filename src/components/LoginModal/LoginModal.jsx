@@ -7,12 +7,12 @@ const LoginModal = ({
   handleRegisterClick,
   onClose,
 }) => {
-  //email
+  //set the email
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
-  //pw
+  //set the password
   const [password, setPassword] = useState("");
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
@@ -33,7 +33,7 @@ const LoginModal = ({
       onLinkClick={handleRegisterClick}
       showLink={true}
     >
-      <label htmlFor="email" className="modal__label">
+      <label className="modal__label">
         Email*{" "}
         <input
           type="email"
@@ -45,7 +45,7 @@ const LoginModal = ({
           onChange={handleEmailChange}
         />
       </label>
-      <label htmlFor="password" className="modal__label">
+      <label className="modal__label">
         Password*{" "}
         <input
           type="password"

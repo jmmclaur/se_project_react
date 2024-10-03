@@ -1,9 +1,10 @@
 import { processServerResponse } from "./processServer";
+import { checkResponse } from "./Api";
 
 export const getWeather = ({ latitude, longitude }, APIKey) => {
   return fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIKey}`
-  ).then(processServerResponse);
+  ).then(checkResponse);
   /*.then((res) => {
     if (res.ok) {
       return res.json();

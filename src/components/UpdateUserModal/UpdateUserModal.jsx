@@ -28,7 +28,7 @@ function UpdateUserModal({ isOpen, handleUpdateUser, isLoading }) {
       onSubmit={handleSubmit}
       formValid={isValid}
     >
-      <label htmlFor="name-update" className="modal__label">
+      <label className="modal__label">
         Name*
         <input
           type="text"
@@ -51,7 +51,7 @@ function UpdateUserModal({ isOpen, handleUpdateUser, isLoading }) {
           {errors.username}
         </span>
       </label>
-      <label htmlFor="avatarUrl-update" className="modal__label">
+      <label className="modal__label">
         Avatar URL
         <input
           type="url"

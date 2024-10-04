@@ -40,7 +40,7 @@ const EditPofileModal = ({
       onClose={closeActiveModal}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="editName" className="modal__label">
+      <label className="modal__label">
         Name*{" "}
         <input
           type="text"
@@ -54,7 +54,7 @@ const EditPofileModal = ({
           onChange={handleNameChange}
         />
       </label>
-      <label htmlFor="editAvatar" className="modal__label">
+      <label className="modal__label">
         Avatar*{" "}
         <input
           type="url"

@@ -11,3 +11,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </BrowserRouter>
   </React.StrictMode>
 );
+
+//<BrowserRouter basename="/se_project_react/">
+// hmm that change just makes the weather bar and clothes disappear, idk

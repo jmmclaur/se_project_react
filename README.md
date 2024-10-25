@@ -12,3 +12,11 @@ https://jmmclaur.github.io/se_project_react
 
 Link to Backend
 https://github.com/jmmclaur/se_project_express
+
+Sprint 15 Project Description
+For the back-end WTWR project, the focus was improving middlewares for the server.
+
+Domains
+wtwr.jmmclaur.jumpingcrab.com
+api.wtwr.jmmclaur.jumpingcrab.com
+www.wtwr.jmmclaur.jumpingcrab.com
